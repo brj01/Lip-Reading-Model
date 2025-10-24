@@ -1,223 +1,192 @@
 #!/usr/bin/env python3
-import warnings, sys, os, subprocess, shutil, json, re
+import json, os, re, sys, subprocess, shutil
 from pathlib import Path
-
-warnings.filterwarnings("ignore")
-
-# Resolve paths (always next to this script)
 SCRIPT_DIR = Path(__file__).parent.resolve()
-alamatparent = str(SCRIPT_DIR)
-json_path = str(SCRIPT_DIR / "youtubevideos.json")
+JSON_PATH = SCRIPT_DIR / "youtubevideos.json"
+VIDEOS_ROOT = SCRIPT_DIR / "videos"
+
+# Try to find ffmpeg: PATH or local ffmpeg.exe next to this script
+FFMPEG = shutil.which("ffmpeg") or str((SCRIPT_DIR / "ffmpeg.exe"))
 
 def slugify(s: str) -> str:
     s = re.sub(r"[^\w\s-]", "", s).strip()
     s = re.sub(r"[\s_-]+", "_", s)
     return s or "video"
 
-def process_subtitles(video_dir: str, safe_name: str):
-    """Process any available subtitles and convert to clean text format"""
-    # Look for any subtitle files
-    subtitle_files = []
-    for ext in ['srt', 'vtt', 'ass', 'lrc']:
-        for lang_code in ['ar', 'en', 'fr', 'es', 'de']:  # Common languages
-            sub_file = f"video.{lang_code}.{ext}"
-            if os.path.exists(sub_file):
-                subtitle_files.append((lang_code, ext, sub_file))
-    
-    # Also look for generic subtitle files
-    for ext in ['srt', 'vtt']:
-        sub_file = f"video.{ext}"
-        if os.path.exists(sub_file):
-            subtitle_files.append(('unknown', ext, sub_file))
-    
-    # Process each subtitle file found
-    for lang_code, ext, sub_file in subtitle_files:
-        try:
-            output_file = os.path.join(video_dir, f"{safe_name}_{lang_code}.txt")
-            
-            if ext == 'srt':
-                clean_srt_content(sub_file, output_file)
-            elif ext == 'vtt':
-                clean_vtt_content(sub_file, output_file)
-            else:
-                # For other formats, just copy the file
-                shutil.copy2(sub_file, output_file)
-            
-            print(f"    → Processed {lang_code} subtitles")
-            
-            # Remove the original subtitle file
-            os.remove(sub_file)
-            
-        except Exception as e:
-            print(f"    → Warning: Failed to process {sub_file}: {e}")
+def ytdlp():
+    return [sys.executable, "-m", "yt_dlp"]
 
-def clean_srt_content(input_file: str, output_file: str):
-    """Clean SRT subtitle content and extract text only"""
-    with open(input_file, "r", encoding="utf-8", errors="ignore") as f:
-        lines = f.readlines()
-    
-    text_lines = []
-    i = 0
-    while i < len(lines):
-        line = lines[i].strip()
-        
-        # Skip line numbers and timestamps
-        if line.isdigit() or '-->' in line:
-            i += 1
-            continue
-        
-        # Skip empty lines
-        if not line:
-            i += 1
-            continue
-            
-        # Add text content
-        text_lines.append(line)
-        i += 1
-    
-    # Write cleaned text
-    with open(output_file, "w", encoding="utf-8") as f:
-        f.write("\n".join(text_lines))
-
-def clean_vtt_content(input_file: str, output_file: str):
-    """Clean VTT subtitle content and extract text only"""
-    with open(input_file, "r", encoding="utf-8", errors="ignore") as f:
-        content = f.read()
-    
-    lines = content.split('\n')
-    text_lines = []
-    
-    for line in lines:
-        line = line.strip()
-        
-        # Skip VTT header, timestamps, and style information
-        if (line.startswith('WEBVTT') or 
-            '-->' in line or 
-            line.startswith('NOTE') or
-            line.startswith('STYLE') or
-            not line):
-            continue
-        
-        # Add text content
-        text_lines.append(line)
-    
-    # Write cleaned text
-    with open(output_file, "w", encoding="utf-8") as f:
-        f.write("\n".join(text_lines))
-
-def ensure_dirs():
-    """Create videos directory structure"""
-    videos_root = os.path.join(alamatparent, "videos")
-    os.makedirs(videos_root, exist_ok=True)
-    return videos_root
-
-def load_json_items(path):
-    print("Reading JSON from:", os.path.abspath(path))
-    if not os.path.exists(path):
-        raise FileNotFoundError(f"JSON file not found: {path}")
-    if os.stat(path).st_size == 0:
-        raise ValueError(f"JSON file is empty: {path}")
-    with open(path, "r", encoding="utf-8-sig") as f:
+def load_items():
+    with open(JSON_PATH, "r", encoding="utf-8-sig") as f:
         data = json.load(f)
-    if not isinstance(data, list):
-        raise ValueError("JSON must be an array of objects: [{name, type, video_link}, ...]")
     items = []
-    for idx, obj in enumerate(data):
-        if not isinstance(obj, dict): 
-            print(f"Skipping item #{idx}: not an object"); continue
+    for obj in data:
+        if not isinstance(obj, dict): continue
         link = obj.get("video_link") or obj.get("link") or obj.get("url")
-        if not link:
-            print(f"Skipping item #{idx}: missing video_link/link/url"); continue
-        items.append({
-            "name": obj.get("name") or "Untitled",
-            "type": obj.get("type") or "video",
-            "video_link": link,
-            "description": obj.get("description", ""),
-            "tags": obj.get("tags", [])
-        })
-    print(f"Loaded {len(items)} valid item(s).")
+        if not link: continue
+        items.append({"name": obj.get("name") or "Untitled", "video_link": link})
     return items
 
-def download_from_json(items, videos_root):
-    print(f"Starting downloads for {len(items)} item(s)...")
-    
-    for idx, item in enumerate(items, start=1):
-        name = item["name"]
-        link = item["video_link"]
-        safe = slugify(name)
-        item_dir = os.path.join(videos_root, safe)
-        os.makedirs(item_dir, exist_ok=True)
-        
-        print(f"\n[{idx}] Downloading: {name}")
-        print(f"    → Link: {link}")
-        print(f"    → Folder: {item_dir}")
+def extract_mp3_from_mp4(mp4_path: Path):
+    mp3_path = mp4_path.with_suffix(".mp3")
+    # -vn = drop video; libmp3lame; q=2 ~ high quality
+    cmd = [FFMPEG, "-y", "-i", str(mp4_path), "-vn", "-acodec", "libmp3lame", "-q:a", "2", str(mp3_path)]
+    subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    return mp3_path.exists()
 
-        # Clear cache
-        subprocess.call([sys.executable, "-m", "yt_dlp", "--rm-cache-dir"])
-
-        # Download video with subtitles
-        cmd = [
-            sys.executable, "-m", "yt_dlp",
-            link,
-            "-S", "ext:mp4:m4a",
-            "-o", "video.mp4",
-            "--socket-timeout", "5",
-            "-4",
-            "--write-sub",           # Write subtitle file
-            "--write-auto-sub",      # Write auto-generated subtitle file
-            "--sub-langs", "all",    # Download all available subtitles
-            "--convert-subs", "srt", # Convert to SRT format
-        ]
-        
-        rc = subprocess.call(cmd)
-        if rc != 0:
-            print(f"[{idx}] yt-dlp returned code {rc} (skipped/failed).")
+def clean_srt_lines(text: str):
+    out = []
+    for line in text.splitlines():
+        t = line.strip()
+        if not t or t.isdigit() or "-->" in t:
             continue
+        out.append(t)
+    return "\n".join(out)
 
-        # Move video if present
-        mp4_src = os.path.join(alamatparent, "video.mp4")
-        if os.path.exists(mp4_src):
-            mp4_dst = os.path.join(item_dir, f"{safe}.mp4")
-            shutil.move(mp4_src, mp4_dst)
-            print(f"    → Saved video → {mp4_dst}")
-        else:
-            print(f"    → No video was saved (likely filtered/skipped).")
+def make_transcription(out_dir: Path, base: str):
+    """
+    Prefer English *.srt if present; else first *.srt/.vtt.
+    Write transcription.txt, then delete all *.srt/*.vtt files.
+    Return True if transcription written.
+    """
+    srts = list(out_dir.glob("*.srt"))
+    vtts = list(out_dir.glob("*.vtt"))
+    if not srts and not vtts:
+        return False
 
-        # Process all available subtitles
-        process_subtitles(item_dir, safe)
+    def score(p: Path):
+        n = p.name.lower()
+        if ".en." in n or n.endswith(".en.srt") or n.endswith(".en.vtt") or n.startswith(f"{base}.en."):
+            return 0
+        if "en-" in n or "en_us" in n or "en-us" in n:
+            return 1
+        return 2
 
-        # Write comprehensive metadata file
-        meta_path = os.path.join(item_dir, "metadata.json")
-        metadata = {
-            "title": name,
-            "type": item["type"],
-            "video_link": link,
-            "description": item.get("description", ""),
-            "tags": item.get("tags", []),
-            "download_date": subprocess.getoutput('date -Iseconds'),  # ISO format date
-            "files": {
-                "video": f"{safe}.mp4",
-                "subtitles": [f for f in os.listdir(item_dir) if f.endswith('.txt')]
-            }
-        }
-        
-        with open(meta_path, "w", encoding="utf-8") as mf:
-            json.dump(metadata, mf, ensure_ascii=False, indent=2)
-        
-        print(f"    → Saved metadata → {meta_path}")
+    candidates = sorted(srts + vtts, key=score)
+    chosen = candidates[0]
+
+    if chosen.suffix.lower() == ".srt":
+        txt = clean_srt_lines(chosen.read_text(encoding="utf-8", errors="ignore"))
+    else:
+        # quick VTT clean
+        lines = []
+        for line in chosen.read_text(encoding="utf-8", errors="ignore").splitlines():
+            t = line.strip()
+            if not t or t.startswith("WEBVTT") or "-->" in t or t.startswith("NOTE") or t.startswith("STYLE"):
+                continue
+            lines.append(t)
+        txt = "\n".join(lines)
+
+    (out_dir / "transcription.txt").write_text(txt.strip() + ("\n" if txt else ""), encoding="utf-8")
+
+    # remove all subtitle files so only transcription.txt remains
+    for p in candidates:
+        try: p.unlink()
+        except Exception: pass
+    return True
+
+def delete_extras(out_dir: Path, keep: set):
+    for p in out_dir.iterdir():
+        if p.name not in keep:
+            try: p.unlink()
+            except Exception: pass
 
 def main():
-    videos_root = ensure_dirs()
-    try:
-        items = load_json_items(json_path)
-    except Exception as e:
-        print(f"Failed to parse JSON: {e}")
-        return
+    VIDEOS_ROOT.mkdir(exist_ok=True)
+    subprocess.run(ytdlp() + ["--rm-cache-dir"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+    items = load_items()
     if not items:
         print("No valid items in JSON.")
         return
-    download_from_json(items, videos_root)
-    print(f"\n✅ All downloads completed! Check the 'videos' folder.")
+
+    for i, it in enumerate(items, 1):
+        name, link = it["name"], it["video_link"]
+        base = slugify(name)
+        out_dir = VIDEOS_ROOT / base
+        out_dir.mkdir(parents=True, exist_ok=True)
+
+        print(f"\n[{i}] {name}")
+        print(f"    → {link}")
+        print(f"    → {out_dir}")
+
+        # Force MP4 video and M4A audio to avoid .webm outputs
+        # Limit subs to English auto only to avoid rate limiting
+        cmd = ytdlp() + [
+            link,
+            "-f", "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
+            "--merge-output-format", "mp4",
+            "--remux-video", "mp4",
+            "--no-write-description",
+            "--no-write-thumbnail",
+            "--no-part",
+            "--no-keep-fragments",
+            "--continue",
+            "-o", f"{base}.%(ext)s",
+            "--socket-timeout", "5",
+            "-4",
+
+            # subtitles (optional English auto; comment these 3 lines if you don't want any)
+            "--write-auto-sub",
+            "--sub-langs", "en.*",
+            "--convert-subs", "srt",
+
+            # robustness
+            "--retries", "10",
+            "--fragment-retries", "10",
+            "-N", "4",
+        ]
+
+        # If some videos 403, uncomment one line below to use your browser cookies:
+        # cmd += ["--cookies-from-browser", "chrome"]   # or "edge" / "firefox"
+
+        rc = subprocess.call(cmd, cwd=out_dir)
+        if rc != 0:
+            print(f"    ✖ yt-dlp failed with code {rc}")
+            continue
+
+        mp4 = out_dir / f"{base}.mp4"
+        if not mp4.exists():
+            print("    ⚠ MP4 not found (ffmpeg missing or blocked format).")
+            continue
+        print(f"    ✔ Video → {mp4}")
+
+        # Extract MP3
+        if not FFMPEG or not Path(FFMPEG).exists():
+            print("    ⚠ ffmpeg not found. Place ffmpeg.exe next to this script or install ffmpeg.")
+        else:
+            ok = extract_mp3_from_mp4(mp4)
+            if ok:
+                print(f"    ✔ Audio → {mp4.with_suffix('.mp3')}")
+            else:
+                print("    ⚠ Failed to extract MP3.")
+
+        # Make transcription.txt if any subs
+        got_tx = make_transcription(out_dir, base)
+        if got_tx:
+            print(f"    ✔ Transcription → {out_dir / 'transcription.txt'}")
+        else:
+            print("    ℹ No subtitles available (no transcription.txt).")
+
+        # Keep only the 3 files (or 2 if no subs)
+        keep = {f"{base}.mp4", f"{base}.mp3"}
+        if got_tx:
+            keep.add("transcription.txt")
+        delete_extras(out_dir, keep)
+        print(f"    ✔ Cleaned — kept: {', '.join(sorted(keep))}")
+        # --- add this just before the final print in your main() (outside the for-loop) ---
+        all_mp4s = [str(p.resolve()) for p in Path(VIDEOS_ROOT).rglob("*.mp4")]
+        (Path(SCRIPT_DIR) / "video_list.json").write_text(
+            json.dumps(all_mp4s, ensure_ascii=False, indent=2),
+            encoding="utf-8")
+        print(f"\n🗂  Wrote {len(all_mp4s)} paths to video_list.json")
+
+    # --- add this just before the final print in your main():
+     
+        
+
+
+    print("\n✅ Done. Each folder now contains ONLY: video.mp4, audio.mp3, and transcription.txt (if available).")
 
 if __name__ == "__main__":
     main()
