@@ -1,16 +1,20 @@
 #!/usr/bin/env python3
 """
-Batch transcription helper for NVIDIA Riva / Parakeet ASR (gRPC).
+Batch wrapper around NVIDIA's sample CLI (python-clients/scripts/asr/transcribe_file.py).
 
-Mirrors the workflow used for Whisper and Munsit:
-  * Reads a JSON manifest (default: SCRAPE/main.json) with `audio_url` entries
-  * Resolves each audio file locally
-  * Sends it to the Parakeet endpoint via the Riva gRPC client
-  * Persists transcripts to TESTING LLMS/testparakeet.json by default
+The script:
+  * Reads a manifest (default: SCRAPE/main.json) containing entries with `audio_url`.
+  * Resolves each audio file under the supplied --audio-root (defaults to manifest parent).
+  * Converts non-WAV sources to 16 kHz mono WAV with ffmpeg (in-place conversion optional).
+  * Invokes the official `transcribe_file.py` for each clip, captures the output transcript,
+    and writes results into TESTING LLMS/Parakeet/testparakeet.json (or a path you provide).
 
-The script expects the `nvidia-riva-client` package to be installed and uses
-metadata headers (`function-id`, `authorization`) supplied by the user or
-environment variables.
+Environment variables required before running:
+  PARAKEET_API_KEY     = nvapi-...
+  PARAKEET_FUNCTION_ID = UUID from the Parakeet deployment
+
+Example:
+  python TESTING LLMS/Parakeet/testparakeet.py --json SCRAPE/main.json --audio-root SCRAPE --convert
 """
 
 from __future__ import annotations
@@ -24,78 +28,32 @@ import tempfile
 from pathlib import Path
 from typing import Iterable, Iterator, Optional, Tuple
 
-import riva.client
-from riva.client.proto import riva_asr_pb2, riva_audio_pb2
-import requests  # noqa: F401  # imported to ensure dependency availability when sharing venv with Munsit script
 
-
-DEFAULT_OUTPUT_PATH = Path(__file__).with_suffix(".json")
-DEFAULT_SAMPLE_RATE = 16000
-DEFAULT_LANGUAGE_CODE = "ar"
+DEFAULT_OUTPUT_PATH = Path("TESTING LLMS/Parakeet/testparakeet.json")
+PARAKEET_CLI = Path("python-clients/scripts/asr/transcribe_file.py")
+DEFAULT_SERVER = "grpc.nvcf.nvidia.com:443"
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Transcribe audio files via NVIDIA Riva/Parakeet using a manifest."
+        description="Loop Parakeet transcription over a JSON manifest using NVIDIA's sample CLI.",
     )
     parser.add_argument(
         "--json",
         type=Path,
         default=Path("SCRAPE/main.json"),
-        help="Path to JSON manifest containing objects with an `audio_url` field (default: SCRAPE/main.json).",
+        help="Manifest containing objects with `audio_url`. (default: SCRAPE/main.json)",
     )
     parser.add_argument(
         "--audio-root",
         type=Path,
         default=None,
-        help="Base directory to resolve audio paths; defaults to the manifest's parent directory.",
+        help="Base directory for audio files. Defaults to the manifest directory.",
     )
     parser.add_argument(
         "--server",
-        default=os.getenv("PARAKEET_SERVER", "grpc.nvcf.nvidia.com:443"),
-        help="gRPC endpoint for the Parakeet service (default: grpc.nvcf.nvidia.com:443 or PARAKEET_SERVER env).",
-    )
-    parser.add_argument(
-        "--no-ssl",
-        action="store_true",
-        help="Disable SSL when connecting to the server (default: SSL enabled).",
-    )
-    parser.add_argument(
-        "--function-id",
-        default=os.getenv("PARAKEET_FUNCTION_ID", ""),
-        help="Function ID metadata required by NVIDIA NVCF (default pulls from PARAKEET_FUNCTION_ID env).",
-    )
-    parser.add_argument(
-        "--api-key",
-        default=os.getenv("PARAKEET_API_KEY"),
-        help="API key / bearer token. Defaults to PARAKEET_API_KEY environment variable.",
-    )
-    parser.add_argument(
-        "--language-code",
-        default=DEFAULT_LANGUAGE_CODE,
-        help=f"Language code passed to Riva (default: {DEFAULT_LANGUAGE_CODE}).",
-    )
-    parser.add_argument(
-        "--sample-rate",
-        type=int,
-        default=DEFAULT_SAMPLE_RATE,
-        help=f"Target sample rate in Hz (default: {DEFAULT_SAMPLE_RATE}).",
-    )
-    parser.add_argument(
-        "--punctuation",
-        action="store_true",
-        help="Enable automatic punctuation (disabled by default).",
-    )
-    parser.add_argument(
-        "--verbatim",
-        action="store_true",
-        help="Request verbatim transcripts (default: off).",
-    )
-    parser.add_argument(
-        "--limit",
-        type=int,
-        default=None,
-        help="Only transcribe the first N entries from the manifest.",
+        default=DEFAULT_SERVER,
+        help=f"Parakeet gRPC endpoint (default: {DEFAULT_SERVER}).",
     )
     parser.add_argument(
         "--output",
@@ -104,36 +62,42 @@ def parse_args() -> argparse.Namespace:
         help=f"Destination JSON for transcripts (default: {DEFAULT_OUTPUT_PATH}).",
     )
     parser.add_argument(
-        "--no-save",
-        action="store_true",
-        help="Do not persist transcripts to disk.",
+        "--limit",
+        type=int,
+        default=None,
+        help="Optional limit on number of manifest entries to process.",
     )
     parser.add_argument(
         "--convert",
         action="store_true",
-        help="Force conversion to 16 kHz mono PCM WAV via ffmpeg before sending to Riva.",
+        help="Convert input to 16 kHz mono WAV via ffmpeg before sending.",
     )
     parser.add_argument(
         "--ffmpeg-path",
         default="ffmpeg",
-        help="Path to ffmpeg binary (default assumes it is on PATH).",
+        help="Path to ffmpeg executable (default assumes it is on PATH).",
     )
     parser.add_argument(
-        "--dry-run",
+        "--cli",
+        type=Path,
+        default=PARAKEET_CLI,
+        help=f"Path to transcribe_file.py (default: {PARAKEET_CLI}).",
+    )
+    parser.add_argument(
+        "--no-save",
         action="store_true",
-        help="Resolve files and show planned requests without calling the API.",
+        help="Print transcripts but do not write the JSON output file.",
     )
     return parser.parse_args()
 
 
-def load_manifest(json_path: Path) -> list[dict]:
+def load_manifest(path: Path) -> list[dict]:
     try:
-        payload = json.loads(json_path.read_text(encoding="utf-8"))
+        payload = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
-        raise SystemExit(f"Failed to parse manifest {json_path}: {exc}") from exc
-
+        raise SystemExit(f"Failed to parse manifest {path}: {exc}") from exc
     if not isinstance(payload, list):
-        raise SystemExit(f"Manifest {json_path} must contain a JSON array.")
+        raise SystemExit(f"Manifest {path} must be a JSON array.")
     return payload
 
 
@@ -148,32 +112,36 @@ def limited(entries: Iterable[dict], limit: Optional[int]) -> Iterator[dict]:
 
 
 def resolve_audio_path(raw_url: str, base_dir: Path) -> Path:
-    raw_path = Path(raw_url)
+    if not raw_url:
+        raise FileNotFoundError("Empty audio_url")
+    normalised = raw_url.replace("\\", "/")
+    raw_path = Path(normalised)
     candidates = [
         base_dir / raw_path,
-        base_dir / Path(str(raw_path).replace("audios", "audio", 1)),
         base_dir / raw_path.name,
+        base_dir / "audio" / raw_path.name,
+        base_dir / "audios" / raw_path.name,
+        Path.cwd() / raw_path,
+        Path.cwd() / "audio" / raw_path.name,
+        Path.cwd() / "audios" / raw_path.name,
     ]
     for candidate in candidates:
         if candidate.exists():
             return candidate
-    raise FileNotFoundError(f"Could not locate audio file for '{raw_url}' under {base_dir}")
+    raise FileNotFoundError(f"Could not locate audio file for '{raw_url}' (searched {base_dir})")
 
 
 def convert_to_wav(
     ffmpeg_path: str,
     source: Path,
-    sample_rate: int,
-    force: bool,
+    sample_rate: int = 16000,
 ) -> Tuple[Path, bool]:
     """
-    Ensure the audio is 16-bit PCM mono WAV at the requested sample rate.
-
-    Returns (path_to_use, cleanup_required).
+    Convert to 16 kHz mono WAV using ffmpeg.
+    Returns (converted_path, cleanup_required).
     """
-    if not force and source.suffix.lower() == ".wav":
+    if source.suffix.lower() == ".wav":
         return source, False
-
     tmp = Path(tempfile.mkstemp(prefix="parakeet_", suffix=".wav")[1])
     cmd = [
         ffmpeg_path,
@@ -192,46 +160,51 @@ def convert_to_wav(
         subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     except subprocess.CalledProcessError as exc:
         tmp.unlink(missing_ok=True)
-        raise RuntimeError(
-            f"ffmpeg failed to convert {source} -> WAV (stderr: {exc.stderr.decode(errors='ignore')[:500]})"
-        ) from exc
+        stderr = exc.stderr.decode(errors="ignore") if exc.stderr else ""
+        raise RuntimeError(f"ffmpeg failed for {source}: {stderr[:500]}") from exc
     return tmp, True
 
 
-def make_stub(server: str, use_ssl: bool, metadata: dict[str, str]) -> riva.client.ASRServiceStub:
-    auth = riva.client.Auth(uri=server, use_ssl=use_ssl, metadata=metadata or None)
-    return riva.client.ASRServiceStub(auth)
-
-
-def recognise_file(
-    stub: riva.client.ASRServiceStub,
-    wav_path: Path,
-    sample_rate: int,
-    language_code: str,
-    punctuation: bool,
-    verbatim: bool,
+def call_parakeet_cli(
+    cli_path: Path,
+    server: str,
+    api_key: str,
+    function_id: str,
+    input_path: Path,
 ) -> str:
-    config = riva_asr_pb2.RecognitionConfig(
-        encoding=riva_audio_pb2.AudioEncoding.LINEAR_PCM,
-        sample_rate_hertz=sample_rate,
-        language_code=language_code,
-        max_alternatives=1,
-        enable_automatic_punctuation=punctuation,
-        verbatim_transcripts=verbatim,
+    cmd = [
+        sys.executable,
+        str(cli_path),
+        "--server",
+        server,
+        "--use-ssl",
+        "--metadata",
+        "function-id",
+        function_id,
+        "--metadata",
+        "authorization",
+        f"Bearer {api_key}",
+        "--input-file",
+        str(input_path),
+    ]
+    env = os.environ.copy()
+    env.setdefault("PYTHONIOENCODING", "utf-8")
+    result = subprocess.run(
+        cmd,
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        encoding="utf-8",
+        env=env,
     )
-    with wav_path.open("rb") as audio_stream:
-        audio_content = audio_stream.read()
-    request = riva_asr_pb2.RecognizeRequest(
-        config=config,
-        audio=riva_asr_pb2.RecognitionAudio(audio_content=audio_content),
-    )
-    response = stub.Recognize(request)
-    transcripts = []
-    for result in response.results:
-        if not result.alternatives:
-            continue
-        transcripts.append(result.alternatives[0].transcript)
-    return " ".join(transcripts).strip()
+    transcript_lines = []
+    for line in result.stdout.splitlines():
+        if line.startswith("##"):
+            transcript_lines.append(line.lstrip("# ").strip())
+    transcript = "\n".join(transcript_lines).strip()
+    if not transcript:
+        transcript = result.stdout.strip()
+    return transcript
 
 
 def load_existing_records(path: Path) -> list[dict]:
@@ -239,13 +212,9 @@ def load_existing_records(path: Path) -> list[dict]:
         return []
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError as exc:
-        print(f"[WARN] Failed to parse existing output {path}: {exc}", file=sys.stderr)
+    except json.JSONDecodeError:
         return []
-    if isinstance(data, list):
-        return data
-    print(f"[WARN] Existing output {path} is not a JSON array; starting fresh.", file=sys.stderr)
-    return []
+    return data if isinstance(data, list) else []
 
 
 def upsert_record(records: list[dict], new_record: dict, key: str) -> None:
@@ -256,99 +225,92 @@ def upsert_record(records: list[dict], new_record: dict, key: str) -> None:
     records.append(new_record)
 
 
+def persist_records(path: Path, records: list[dict]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(records, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
 def main() -> None:
     args = parse_args()
-    if not args.api_key:
-        raise SystemExit("Provide an API key via --api-key or PARAKEET_API_KEY environment variable.")
 
-    metadata: dict[str, str] = {"authorization": f"Bearer {args.api_key}"}
-    if args.function_id:
-        metadata["function-id"] = args.function_id
+    api_key = os.getenv("PARAKEET_API_KEY")
+    function_id = os.getenv("PARAKEET_FUNCTION_ID")
+    if not api_key or not api_key.startswith("nvapi-"):
+        raise SystemExit("Set PARAKEET_API_KEY environment variable (nvapi-...).")
+    if not function_id:
+        raise SystemExit("Set PARAKEET_FUNCTION_ID environment variable (UUID from the deployment).")
+
+    if not args.cli.exists():
+        raise SystemExit(f"Cannot find transcribe_file.py at {args.cli}. Did you clone python-clients?")
 
     manifest = load_manifest(args.json)
     audio_base = args.audio_root or args.json.parent
 
-    output_path = None if args.no_save else args.output
-    output_records: list[dict] = []
-    if output_path:
-        output_records = load_existing_records(output_path)
-
-    stub: Optional[riva.client.ASRServiceStub] = None
-    if not args.dry_run:
-        stub = make_stub(
-            server=args.server,
-            use_ssl=not args.no_ssl,
-            metadata=metadata,
-        )
+    output_records: list[dict] = [] if args.no_save else load_existing_records(args.output)
 
     processed = 0
-    try:
-        for entry in limited(manifest, args.limit):
-            title = entry.get("title", "<untitled>")
-            audio_url = entry.get("audio_url")
-            if not audio_url:
-                print(f"Skipping entry without audio_url: {title}", file=sys.stderr)
+    for entry in limited(manifest, args.limit):
+        title = entry.get("title", "<untitled>")
+        audio_url = entry.get("audio_url")
+        if not audio_url:
+            print(f"[SKIP] Missing audio_url for {title}", file=sys.stderr)
+            continue
+
+        try:
+            audio_path = resolve_audio_path(audio_url, audio_base)
+        except FileNotFoundError as exc:
+            print(f"[WARN] {exc}", file=sys.stderr)
+            continue
+
+        processed += 1
+        print(f"[{processed}] Parakeet: {title} ({audio_path})")
+
+        wav_path = audio_path
+        cleanup = False
+        if args.convert:
+            try:
+                wav_path, cleanup = convert_to_wav(args.ffmpeg_path, audio_path)
+            except RuntimeError as exc:
+                print(f"[ERROR] {exc}", file=sys.stderr)
                 continue
 
-            try:
-                audio_path = resolve_audio_path(audio_url, audio_base)
-            except FileNotFoundError as exc:
-                print(f"[WARN] {exc}", file=sys.stderr)
-                continue
-
-            processed += 1
-            print(f"[{processed}] Parakeet: {title} ({audio_path})")
-
-            tmp_wav: Optional[Path] = None
-            cleanup = False
-            try:
-                wav_path, cleanup = convert_to_wav(
-                    ffmpeg_path=args.ffmpeg_path,
-                    source=audio_path,
-                    sample_rate=args.sample_rate,
-                    force=args.convert or audio_path.suffix.lower() != ".wav",
-                )
-                tmp_wav = wav_path if cleanup else None
-
-                if args.dry_run:
-                    print("    (dry-run) conversion target:", wav_path)
-                    transcript = ""
-                else:
-                    assert stub is not None
-                    transcript = recognise_file(
-                        stub=stub,
-                        wav_path=wav_path,
-                        sample_rate=args.sample_rate,
-                        language_code=args.language_code,
-                        punctuation=args.punctuation,
-                        verbatim=args.verbatim,
-                    )
-
-                if transcript:
-                    print(f"    Transcript (first 120 chars): {transcript[:120]!r}")
-                elif args.dry_run:
-                    print("    (dry-run) Skipping transcription.")
-
-                if output_path:
-                    record = {
-                        "title": title,
-                        "date": entry.get("date"),
-                        "audio_url": audio_url,
-                        "episode_url": entry.get("episode_url"),
-                        "transcript_ar": transcript,
-                    }
-                    upsert_record(output_records, record, key="audio_url")
-            finally:
-                if cleanup and tmp_wav and tmp_wav.exists():
-                    tmp_wav.unlink(missing_ok=True)
-    finally:
-        if output_path:
-            output_path.parent.mkdir(parents=True, exist_ok=True)
-            output_path.write_text(
-                json.dumps(output_records, ensure_ascii=False, indent=2),
-                encoding="utf-8",
+        try:
+            transcript = call_parakeet_cli(
+                cli_path=args.cli,
+                server=args.server,
+                api_key=api_key,
+                function_id=function_id,
+                input_path=wav_path,
             )
-            print(f"Wrote {len(output_records)} transcript entries to {output_path}")
+            print(f"    Transcript (first 120 chars): {transcript[:120]!r}")
+        except subprocess.CalledProcessError as exc:
+            print(f"[ERROR] CLI failed for {audio_path}: {exc.stderr.strip()}", file=sys.stderr)
+            transcript = ""
+        finally:
+            if cleanup and wav_path.exists():
+                try:
+                    wav_path.unlink(missing_ok=True)
+                except PermissionError:
+                    pass
+
+        if args.no_save:
+            continue
+
+        record = {
+            "title": title,
+            "date": entry.get("date"),
+            "audio_url": audio_url,
+            "episode_url": entry.get("episode_url"),
+            "transcript_ar": transcript,
+        }
+        upsert_record(output_records, record, key="audio_url")
+        persist_records(args.output, output_records)
+
+    if not args.no_save:
+        print(f"\nWrote {len(output_records)} transcript entries to {args.output}")
 
 
 if __name__ == "__main__":
