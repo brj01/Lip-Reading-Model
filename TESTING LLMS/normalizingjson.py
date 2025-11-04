@@ -1,0 +1,112 @@
+import json
+import os
+import re
+import time
+from num2words import num2words
+
+# === CONFIG ===
+INPUT_FILE = r"TESTING LLMS\TESTmunist\TESTMUNSIT.json"
+OUTPUT_FILE = r"Normalized\MUNIST.json"
+
+# === REGEX + DIGIT NORMALIZATION ===
+def normalize_arabic_regex(text: str) -> str:
+    if not isinstance(text, str) or not text.strip():
+        return ""
+
+    # Normalize alef variants
+    text = re.sub(r"[إأآٱ]", "ا", text)
+
+    # Normalize yaa and alef maksura
+    text = re.sub(r"ى", "ي", text)
+
+    # Normalize teh marbuta → ه
+    text = re.sub(r"ة", "ه", text)
+
+    # Remove tatweel (ـ)
+    text = re.sub(r"ـ", "", text)
+
+    # Remove Arabic diacritics (tashkeel)
+    text = re.sub(r"[\u0617-\u061A\u064B-\u0652\u0670\u06D6-\u06ED]", "", text)
+
+    # Remove invisible / control characters
+    text = text.replace("\u200f", "").replace("\u200e", "").replace("\xa0", " ")
+
+    # Remove punctuation (Arabic + English)
+    punctuation_pattern = r"[\"'،؛؟!?,.;:()\[\]{}<>~`@#$%^&*_+=\\|/−—–]"
+    text = re.sub(punctuation_pattern, " ", text)
+
+    # Remove anything not Arabic letters, Arabic digits, or whitespace
+    text = re.sub(r"[^0-9\u0600-\u06FF\s]", " ", text)
+
+    # Convert Western digits (0-9) to Arabic-Indic digits (٠-٩)
+    western_to_arabic_digits = str.maketrans("0123456789", "٠١٢٣٤٥٦٧٨٩")
+    text = text.translate(western_to_arabic_digits)
+
+    # === Convert all numbers (Arabic or Western) to text ===
+    text = convert_numbers_to_text(text)
+
+    # Collapse multiple spaces
+    text = re.sub(r"\s+", " ", text).strip()
+
+    return text
+
+
+def convert_numbers_to_text(text: str) -> str:
+    """Convert any Arabic or Western digit sequence into Arabic words."""
+    def replacer(match):
+        num_str = match.group()
+        # Convert Arabic-Indic digits (٠١٢٣٤٥٦٧٨٩) to Western for num2words
+        western_num = num_str.translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789"))
+        try:
+            num = int(western_num)
+            # Convert number to Arabic words
+            return num2words(num, lang="ar")
+        except Exception:
+            return num_str  # fallback if conversion fails
+
+    return re.sub(r"[0-9٠-٩]+", replacer, text)
+
+
+# === Recursive JSON normalization ===
+def normalize_json(data):
+    if isinstance(data, dict):
+        return {k: normalize_json(v) for k, v in data.items()}
+    elif isinstance(data, list):
+        return [normalize_json(item) for item in data]
+    elif isinstance(data, str):
+        # Normalize only if string contains Arabic or digits
+        if re.search(r"[\u0600-\u06FF0-9٠-٩]", data):
+            return normalize_arabic_regex(data)
+        return data
+    else:
+        return data
+
+
+# === Main processing ===
+def process_file(input_path: str, output_path: str):
+    if not os.path.exists(input_path):
+        print(f"❌ Input file not found: {input_path}")
+        return
+
+    with open(input_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    total = len(data)
+    print(f"📖 Loaded {total} items from {input_path}")
+
+    normalized_entries = []
+    for i, entry in enumerate(data, start=1):
+        title = entry.get("title", "")
+        print(f"[{i}/{total}] Normalizing '{title}'...")
+        normalized_entry = normalize_json(entry)
+        normalized_entries.append(normalized_entry)
+
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(normalized_entries, f, ensure_ascii=False, indent=2)
+
+    print(f"\n✅ Normalized file saved to {output_path}")
+
+
+if __name__ == "__main__":
+    process_file(INPUT_FILE, OUTPUT_FILE)
