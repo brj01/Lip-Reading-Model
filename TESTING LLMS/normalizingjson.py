@@ -5,14 +5,15 @@ import time
 from num2words import num2words
 
 # === CONFIG ===
-INPUT_FILE = r"TESTING LLMS\TESTmunist\TESTMUNSIT.json"
-OUTPUT_FILE = r"Normalized\MUNIST.json"
+INPUT_FILE = r"TESTING LLMS\Parakeet\testparakeet.json"
+OUTPUT_FILE = r"Normalized\Parakeet.json"
 
 # === REGEX + DIGIT NORMALIZATION ===
 def normalize_arabic_regex(text: str) -> str:
     if not isinstance(text, str) or not text.strip():
         return ""
 
+    # --- Arabic-specific normalization ---
     # Normalize alef variants
     text = re.sub(r"[إأآٱ]", "ا", text)
 
@@ -31,18 +32,18 @@ def normalize_arabic_regex(text: str) -> str:
     # Remove invisible / control characters
     text = text.replace("\u200f", "").replace("\u200e", "").replace("\xa0", " ")
 
-    # Remove punctuation (Arabic + English)
+    # Remove punctuation (Arabic + English) but keep English letters
     punctuation_pattern = r"[\"'،؛؟!?,.;:()\[\]{}<>~`@#$%^&*_+=\\|/−—–]"
     text = re.sub(punctuation_pattern, " ", text)
 
-    # Remove anything not Arabic letters, Arabic digits, or whitespace
-    text = re.sub(r"[^0-9\u0600-\u06FF\s]", " ", text)
+    # Keep Arabic, English, digits, and whitespace — remove symbols only
+    text = re.sub(r"[^0-9A-Za-z\u0600-\u06FF\s]", " ", text)
 
     # Convert Western digits (0-9) to Arabic-Indic digits (٠-٩)
     western_to_arabic_digits = str.maketrans("0123456789", "٠١٢٣٤٥٦٧٨٩")
     text = text.translate(western_to_arabic_digits)
 
-    # === Convert all numbers (Arabic or Western) to text ===
+    # Convert numbers to Arabic words
     text = convert_numbers_to_text(text)
 
     # Collapse multiple spaces
@@ -59,7 +60,6 @@ def convert_numbers_to_text(text: str) -> str:
         western_num = num_str.translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789"))
         try:
             num = int(western_num)
-            # Convert number to Arabic words
             return num2words(num, lang="ar")
         except Exception:
             return num_str  # fallback if conversion fails
@@ -68,16 +68,26 @@ def convert_numbers_to_text(text: str) -> str:
 
 
 # === Recursive JSON normalization ===
-def normalize_json(data):
+def normalize_json(data, parent_key=None):
     if isinstance(data, dict):
-        return {k: normalize_json(v) for k, v in data.items()}
+        normalized = {}
+        for k, v in data.items():
+            # Skip normalization for title or audio keys
+            if k.lower() in ["title", "audio", "audio_link"] or "audio" in k.lower():
+                normalized[k] = v
+            else:
+                normalized[k] = normalize_json(v, parent_key=k)
+        return normalized
+
     elif isinstance(data, list):
-        return [normalize_json(item) for item in data]
+        return [normalize_json(item, parent_key) for item in data]
+
     elif isinstance(data, str):
-        # Normalize only if string contains Arabic or digits
+        # Only normalize if Arabic or digits exist in text
         if re.search(r"[\u0600-\u06FF0-9٠-٩]", data):
             return normalize_arabic_regex(data)
         return data
+
     else:
         return data
 
