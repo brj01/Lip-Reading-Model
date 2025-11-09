@@ -1,2 +1,6 @@
 /SCRAPE/languagewave_out
 .history
+/aya-llm
+.env
+/.vscode
+/Normalized/__pycache__
