@@ -37,7 +37,7 @@ except Exception:
 # When placed in Normalized/, run from that folder. Root is script directory.
 ROOT = os.path.abspath(os.path.dirname(__file__))
 GROUND_TRUTH = os.path.join(ROOT, "mainn.json")
-OUTPUT_FILE = os.path.join(ROOT, "semantic_results.json")
+OUTPUT_FILE = os.path.join(ROOT, "semantic_resultsGPT4o.json")
 
 
 def load_json(path: str):
@@ -47,7 +47,7 @@ def load_json(path: str):
 
 def find_json_files(root: str) -> List[str]:
     # Only include the hypothesis files we care about (case-sensitive): GPT4.json and Whisper.json
-    candidates = [ os.path.join(root, "Whisper.json")]
+    candidates = [ os.path.join(root, "GPT4.json")]
     existing = [os.path.abspath(p) for p in candidates if os.path.exists(p)]
     return existing
 
