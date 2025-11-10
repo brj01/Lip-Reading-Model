@@ -1,0 +1,466 @@
+{
+  "للقيت": {
+    "لقئت": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "سرفيس": {
+    "سيرفيس": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "فيه": {
+    "في": {
+      "verdict": "variant",
+      "confidence": 0.95,
+      "raw": "{\"verdict\":\"variant\",\"confidence\":0.95}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "بعرفا": {
+    "بعرفها": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "عنو": {
+    "عنه": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "نتذكر": {
+    "نذكر": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "وحياتو": {
+    "وحياته": {
+      "verdict": "error",
+      "confidence": 0.0,
+      "reason": "all_models_failed_or_non_json",
+      "raw": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1762805194-ogt6u92M2mOLoJx1FUUY\",\"provider\":\"NCompass\",\"model\":\"openai/gpt-oss-20b\",\"object\":\"chat.completion\",\"created\":1762805194,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"length\",\"native_finish_reason\":\"length\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"refusal\":null,\"reasoning\":\"We need to judge orthography and pronunciation for Arabic (Lebanese dialect). Reference token: \\\"وحياتو\\\". Candidate: \\\"وحياته\\\". Let's analyze.\\n\\nReference: \\\"وحياتو\\\" presumably means \\\"and his life\\\" or \\\"and his life\\\" with pronoun \\\"و\\\" + \\\"حيات\\\" + \\\"و\\\" (possessive suffix \\\"و\\\" meaning \\\"his\\\" in some dialect? Actually in Arabic, \\\"و\\\" as suffix is \\\"his\\\" in some dialects? Wait, in Modern Standard Arabic, possessive suffix for masculine singular is \\\"ه\\\" (his). \\\"و\\\" is not used. But in some dialects, \\\"و\\\" is used as a possessive suffix for masculine? In Lebanese dialect, \\\"و\\\" is used as a possessive suffix for masculine? Let's think: In Lebanese Arabic, the possessive pronouns: \\\"ي\\\" (my), \\\"ك\\\" (your), \\\"ه\\\" (his), \\\"ها\\\" (her), \\\"ن\\\" (our), \\\"كم\\\" (your plural), \\\"هم\\\" (their). But \\\"و\\\" is not typical. However, \\\"و\\\" can be a suffix for \\\"his\\\" in some dialects? Actually, in some dialects, \\\"و\\\" is used as a suffix for \\\"his\\\" in the context of \\\"أخي\\\" (my brother) vs \\\"أخوي\\\" (my brother). Wait, \\\"أخوي\\\" is \\\"my brother\\\" with \\\"ي\\\" suffix. \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"We need to judge orthography and pronunciation for Arabic (Lebanese dialect). Reference token: \\\"وحياتو\\\". Candidate: \\\"وحياته\\\". Let's analyze.\\n\\nReference: \\\"وحياتو\\\" presumably means \\\"and his life\\\" or \\\"and his life\\\" with pronoun \\\"و\\\" + \\\"حيات\\\" + \\\"و\\\" (possessive suffix \\\"و\\\" meaning \\\"his\\\" in some dialect? Actually in Arabic, \\\"و\\\" as suffix is \\\"his\\\" in some dialects? Wait, in Modern Standard Arabic, possessive suffix for masculine singular is \\\"ه\\\" (his). \\\"و\\\" is not used. But in some dialects, \\\"و\\\" is used as a possessive suffix for masculine? In Lebanese dialect, \\\"و\\\" is used as a possessive suffix for masculine? Let's think: In Lebanese Arabic, the possessive pronouns: \\\"ي\\\" (my), \\\"ك\\\" (your), \\\"ه\\\" (his), \\\"ها\\\" (her), \\\"ن\\\" (our), \\\"كم\\\" (your plural), \\\"هم\\\" (their). But \\\"و\\\" is not typical. However, \\\"و\\\" can be a suffix for \\\"his\\\" in some dialects? Actually, in some dialects, \\\"و\\\" is used as a suffix for \\\"his\\\" in the context of \\\"أخي\\\" (my brother) vs \\\"أخوي\\\" (my brother). Wait, \\\"أخوي\\\" is \\\"my brother\\\" with \\\"ي\\\" suffix. \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"أخوي\\\" uses \\\"ي\\\". \\\"أخوي\\\" is \\\"my brother\\\". \\\"\",\"format\":\"unknown\",\"index\":0}]}}],\"usage\":{\"prompt_tokens\":400,\"completion_tokens\":900,\"total_tokens\":1300,\"completion_tokens_details\":{\"reasoning_tokens\":975}}}"
+    }
+  },
+  "حياتو": {
+    "حياته": {
+      "verdict": "error",
+      "confidence": 0.0,
+      "reason": "all_models_failed_or_non_json",
+      "raw": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1762805204-c2njdxBgaisIxpR02Xum\",\"provider\":\"Hyperbolic\",\"model\":\"openai/gpt-oss-20b\",\"object\":\"chat.completion\",\"created\":1762805204,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"length\",\"native_finish_reason\":\"length\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"refusal\":null,\"reasoning\":\"We need to judge orthography and pronunciation for Arabic (Lebanese dialect). Reference token: \\\"حياتو\\\". Candidate: \\\"حياة\\\". Wait candidate is \\\"حياة\\\" or \\\"حياة\\\"? Actually candidate: \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". But the candidate token given: \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". But the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Actually the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". But the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"We need to judge orthography and pronunciation for Arabic (Lebanese dialect). Reference token: \\\"حياتو\\\". Candidate: \\\"حياة\\\". Wait candidate is \\\"حياة\\\" or \\\"حياة\\\"? Actually candidate: \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". But the candidate token given: \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". But the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Actually the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". But the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the candidate token is \\\"حياة\\\". Wait the\",\"format\":\"unknown\",\"index\":0}]}}],\"system_fingerprint\":\"\",\"usage\":{\"prompt_tokens\":398,\"completion_tokens\":900,\"total_tokens\":1298}}"
+    }
+  },
+  "ونشاتو": {
+    "ونشئته": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "ب": {
+    "ببلده": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "زايرتا": {
+    "زايرتها": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "فيا": {
+    "فيها": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "وفيا": {
+    "وفيها": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "برمتي": {
+    "برمت": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "انو": {
+    "انه": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "عندو": {
+    "عنده": {
+      "verdict": "error",
+      "confidence": 0.0,
+      "reason": "all_models_failed_or_non_json",
+      "raw": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1762805243-gTWLkhcq9pQrwFmey2rK\",\"provider\":\"Phala\",\"model\":\"openai/gpt-oss-20b\",\"object\":\"chat.completion\",\"created\":1762805243,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"length\",\"native_finish_reason\":\"length\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"refusal\":null,\"reasoning\":\"We need to judge orthography and pronunciation for Arabic (Lebanese dialect). Reference token: \\\"عندو\\\". Candidate: \\\"عنده\\\". In Lebanese dialect, \\\"عندو\\\" is a form of \\\"عند\\\" meaning \\\"he has\\\" (he has something). \\\"عنده\\\" is also a form meaning \\\"he has\\\" but with a different ending. In Modern Standard Arabic, \\\"عند\\\" is a preposition meaning \\\"with\\\". The forms \\\"عندو\\\" and \\\"عنده\\\" are both used in Lebanese dialect. Pronunciation: \\\"عندو\\\" pronounced /ʕandu/ (with a final 'u' sound). \\\"عنده\\\" pronounced /ʕindh/ or /ʕind/ with a 'h' or 'd' sound? Actually \\\"عنده\\\" is a form of \\\"عند\\\" with a final 'ه' (he). In Lebanese dialect, \\\"عنده\\\" is pronounced /ʕind/ or /ʕindh/ maybe. The difference is that \\\"عندو\\\" ends with a 'u' vowel, while \\\"عنده\\\" ends with a 'h' or 'd' sound. In terms of pronunciation, they are not the same. The reference \\\"عندو\\\" ends with a vowel 'u', candidate \\\"عنده\\\" ends with a consonant 'h' or 'd'. So they are not the same pronunciation. Are they considered variant? The rule: \\\"variant\\\" if candidate token differs in spelling or orthography but has the same pronunciation as the reference token. Here pronunciation differs. So verdict should be \\\"error\\\". But we need to consider dialect differences: In Lebanese dialect, \\\"عندو\\\" and \\\"عنده\\\" might be used interchangeably? Actually \\\"عندو\\\" is used for masculine singular, \\\"عنده\\\" is used for feminine singular? Wait, \\\"عندو\\\" is used for masculine singular, \\\"عندها\\\" for plural? \\\"عنده\\\" is used for feminine singular? Let's recall: In Lebanese, \\\"عندو\\\" is used for masculine singular, \\\"عندها\\\" for plural, \\\"عندها\\\" for feminine? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Let's check: In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? Wait, \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"We need to judge orthography and pronunciation for Arabic (Lebanese dialect). Reference token: \\\"عندو\\\". Candidate: \\\"عنده\\\". In Lebanese dialect, \\\"عندو\\\" is a form of \\\"عند\\\" meaning \\\"he has\\\" (he has something). \\\"عنده\\\" is also a form meaning \\\"he has\\\" but with a different ending. In Modern Standard Arabic, \\\"عند\\\" is a preposition meaning \\\"with\\\". The forms \\\"عندو\\\" and \\\"عنده\\\" are both used in Lebanese dialect. Pronunciation: \\\"عندو\\\" pronounced /ʕandu/ (with a final 'u' sound). \\\"عنده\\\" pronounced /ʕindh/ or /ʕind/ with a 'h' or 'd' sound? Actually \\\"عنده\\\" is a form of \\\"عند\\\" with a final 'ه' (he). In Lebanese dialect, \\\"عنده\\\" is pronounced /ʕind/ or /ʕindh/ maybe. The difference is that \\\"عندو\\\" ends with a 'u' vowel, while \\\"عنده\\\" ends with a 'h' or 'd' sound. In terms of pronunciation, they are not the same. The reference \\\"عندو\\\" ends with a vowel 'u', candidate \\\"عنده\\\" ends with a consonant 'h' or 'd'. So they are not the same pronunciation. Are they considered variant? The rule: \\\"variant\\\" if candidate token differs in spelling or orthography but has the same pronunciation as the reference token. Here pronunciation differs. So verdict should be \\\"error\\\". But we need to consider dialect differences: In Lebanese dialect, \\\"عندو\\\" and \\\"عنده\\\" might be used interchangeably? Actually \\\"عندو\\\" is used for masculine singular, \\\"عنده\\\" is used for feminine singular? Wait, \\\"عندو\\\" is used for masculine singular, \\\"عندها\\\" for plural? \\\"عنده\\\" is used for feminine singular? Let's recall: In Lebanese, \\\"عندو\\\" is used for masculine singular, \\\"عندها\\\" for plural, \\\"عندها\\\" for feminine? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Let's check: In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? Wait, \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\\\" is used for feminine singular? In Lebanese, \\\"عندها\\\" is used for feminine plural? Actually \\\"عندها\\\" is used for feminine plural? I'm not sure. But \\\"عنده\",\"format\":\"unknown\",\"index\":0}]}}],\"usage\":{\"prompt_tokens\":398,\"completion_tokens\":900,\"total_tokens\":1298}}"
+    }
+  },
+  "استاذو": {
+    "استاذه": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "يشجعو": {
+    "يشجعه": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "موهبتو": {
+    "موهبته": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "بعرفو": {
+    "بعرفه": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "عيلتو": {
+    "عيلته": {
+      "verdict": "variant",
+      "confidence": 0.95,
+      "raw": "{\"verdict\":\"variant\",\"confidence\":0.95}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "ع": {
+    "بعاصطن": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "ولايه": {
+    "بامريكا": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "بوسطن": {
+    "كان": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "باميركا": {
+    "عمره": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "رنا": {
+    "مظبوط": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "مزبوط": {
+    "كان": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "كان": {
+    "عمره": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "و": {
+    "وهونيك": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "مسيرتو": {
+    "مسيرته": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "سمحتلو": {
+    "سمحت": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "": {
+    "له": {
+      "verdict": "error",
+      "confidence": 1.0,
+      "raw": "{\"verdict\":\"error\",\"confidence\":1.0}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "والانكليزيه": {
+    "والانجليزيه": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "عالقافيه": {
+    "القافيه": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "وكاتبين": {
+    "وكتبين": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "اد": {
+    "قد": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "اساتذتو": {
+    "اساتذته": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "اهتمو": {
+    "اهتموا": {
+      "verdict": "error",
+      "confidence": 0.0,
+      "reason": "all_models_failed_or_non_json",
+      "raw": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1762805320-1V78LvlYQgTacaic3rMS\",\"provider\":\"DeepInfra\",\"model\":\"openai/gpt-oss-20b\",\"object\":\"chat.completion\",\"created\":1762805320,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"refusal\":null,\"reasoning\":\"We need to judge if candidate token matches reference token. Reference: \\\"اهتمو\\\". Candidate: \\\"اهتموا\\\". Let's analyze.\\n\\nWe need to consider Arabic orthography and pronunciation. The reference token \\\"اهتمو\\\" is spelled with letters: ا ه ت م و. That is \\\"اهتمو\\\" (ah-tam-o). The candidate \\\"اهتموا\\\" is spelled: ا ه ت م و ا. That is \\\"اهتموا\\\" (ah-tam-oo-a). The difference is an extra \\\"ا\\\" at the end. In Arabic, \\\"اهتمو\\\" vs \\\"اهتموا\\\" might be variant? Let's think.\\n\\nIn Arabic, the verb \\\"اهتم\\\" (to care) in imperative plural? Actually \\\"اهتم\\\" is imperative singular masculine? Wait: \\\"اهتم\\\" is imperative \\\"take care\\\" (imperative). The imperative form for plural masculine is \\\"اهتموا\\\" (ah-tam-oo). The form \\\"اهتمو\\\" is a variant? In some dialects, the plural imperative ends with \\\"و\\\" instead of \\\"وا\\\". In Modern Standard Arabic, the plural imperative is \\\"اهتموا\\\" (with \\\"وا\\\"). But in some dialects, \\\"اهتمو\\\" might be used. The question: Are they considered variant or same? The system says: \\\"variant: the candidate token differs in spelling or orthography but has the same pronunciation as the reference token.\\\" So if the pronunciation is same, it's variant. But if the pronunciation differs, it's error. So we need to check if \\\"اهتمو\\\" and \\\"اهتموا\\\" have same pronunciation. In Arabic, \\\"اهتمو\\\" would be pronounced \\\"ah-tam-oo\\\" (with a long 'u' sound). \\\"اهتموا\\\" would be pronounced \\\"ah-tam-oo-a\\\" (with a final 'a' sound). Actually \\\"اهتموا\\\" ends with \\\"وا\\\" which is pronounced \\\"wa\\\" or \\\"oo-a\\\"? Wait, \\\"وا\\\" is pronounced \\\"wa\\\" (waw + alif). But in the imperative, the \\\"وا\\\" is pronounced \\\"wa\\\" as a suffix meaning \\\"you all\\\". So \\\"اهتموا\\\" is pronounced \\\"ah-tam-oo-a\\\" or \\\"ah-tam-oo-wa\\\"? Let's think: In Arabic, \\\"وا\\\" is pronounced \\\"wa\\\" (like \\\"wa\\\" in \\\"water\\\"). So \\\"اهتموا\\\" would be pronounced \\\"ah-tam-oo-wa\\\". But \\\"اهتمو\\\" would be pronounced \\\"ah-tam-oo\\\". So the difference is the final \\\"wa\\\" vs nothing. So the pronunciation differs. So it's not a variant; it's an error? But the system says \\\"Differences in dialect that change pronunciation are considered errors.\\\" So if \\\"اهتمو\\\" is a dialectal variant of \\\"اهتموا\\\" but with different pronunciation, it's considered error. But we need to consider the context: The reference token is \\\"اهتمو\\\". The candidate token is \\\"اهتموا\\\". Are they the same word? They are different orthographically. The candidate has an extra \\\"ا\\\" at the end. The pronunciation difference: \\\"اهتمو\\\" vs \\\"اهتموا\\\". The candidate has an extra \\\"wa\\\" suffix. So the pronunciation differs. So it's an error.\\n\\nBut we need to consider the possibility that \\\"اهتمو\\\" is a dialectal variant of \\\"اهتموا\\\" but with the same pronunciation? Actually \\\"اهتمو\\\" might be pronounced \\\"ah-tam-oo\\\" (with a long 'u' sound). \\\"اهتموا\\\" might be pronounced \\\"ah-tam-oo\\\" as well? Wait, in some dialects, the \\\"وا\\\" suffix might be pronounced as \\\"oo\\\" only, not \\\"wa\\\". For example, in some dialects, the plural imperative \\\"اهتموا\\\" might be pronounced \\\"اهتمو\\\" (ah-tam-oo). So the candidate \\\"اهتموا\\\" might be pronounced the same as \\\"اهتمو\\\" in some dialects. But the system says \\\"Differences in dialect that change pronunciation are considered errors.\\\" So if the pronunciation changes, it's error. But if the pronunciation is the same, it's variant. So we need to decide if the pronunciation is the same or not. In standard Arabic, \\\"اهتموا\\\"\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"We need to judge if candidate token matches reference token. Reference: \\\"اهتمو\\\". Candidate: \\\"اهتموا\\\". Let's analyze.\\n\\nWe need to consider Arabic orthography and pronunciation. The reference token \\\"اهتمو\\\" is spelled with letters: ا ه ت م و. That is \\\"اهتمو\\\" (ah-tam-o). The candidate \\\"اهتموا\\\" is spelled: ا ه ت م و ا. That is \\\"اهتموا\\\" (ah-tam-oo-a). The difference is an extra \\\"ا\\\" at the end. In Arabic, \\\"اهتمو\\\" vs \\\"اهتموا\\\" might be variant? Let's think.\\n\\nIn Arabic, the verb \\\"اهتم\\\" (to care) in imperative plural? Actually \\\"اهتم\\\" is imperative singular masculine? Wait: \\\"اهتم\\\" is imperative \\\"take care\\\" (imperative). The imperative form for plural masculine is \\\"اهتموا\\\" (ah-tam-oo). The form \\\"اهتمو\\\" is a variant? In some dialects, the plural imperative ends with \\\"و\\\" instead of \\\"وا\\\". In Modern Standard Arabic, the plural imperative is \\\"اهتموا\\\" (with \\\"وا\\\"). But in some dialects, \\\"اهتمو\\\" might be used. The question: Are they considered variant or same? The system says: \\\"variant: the candidate token differs in spelling or orthography but has the same pronunciation as the reference token.\\\" So if the pronunciation is same, it's variant. But if the pronunciation differs, it's error. So we need to check if \\\"اهتمو\\\" and \\\"اهتموا\\\" have same pronunciation. In Arabic, \\\"اهتمو\\\" would be pronounced \\\"ah-tam-oo\\\" (with a long 'u' sound). \\\"اهتموا\\\" would be pronounced \\\"ah-tam-oo-a\\\" (with a final 'a' sound). Actually \\\"اهتموا\\\" ends with \\\"وا\\\" which is pronounced \\\"wa\\\" or \\\"oo-a\\\"? Wait, \\\"وا\\\" is pronounced \\\"wa\\\" (waw + alif). But in the imperative, the \\\"وا\\\" is pronounced \\\"wa\\\" as a suffix meaning \\\"you all\\\". So \\\"اهتموا\\\" is pronounced \\\"ah-tam-oo-a\\\" or \\\"ah-tam-oo-wa\\\"? Let's think: In Arabic, \\\"وا\\\" is pronounced \\\"wa\\\" (like \\\"wa\\\" in \\\"water\\\"). So \\\"اهتموا\\\" would be pronounced \\\"ah-tam-oo-wa\\\". But \\\"اهتمو\\\" would be pronounced \\\"ah-tam-oo\\\". So the difference is the final \\\"wa\\\" vs nothing. So the pronunciation differs. So it's not a variant; it's an error? But the system says \\\"Differences in dialect that change pronunciation are considered errors.\\\" So if \\\"اهتمو\\\" is a dialectal variant of \\\"اهتموا\\\" but with different pronunciation, it's considered error. But we need to consider the context: The reference token is \\\"اهتمو\\\". The candidate token is \\\"اهتموا\\\". Are they the same word? They are different orthographically. The candidate has an extra \\\"ا\\\" at the end. The pronunciation difference: \\\"اهتمو\\\" vs \\\"اهتموا\\\". The candidate has an extra \\\"wa\\\" suffix. So the pronunciation differs. So it's an error.\\n\\nBut we need to consider the possibility that \\\"اهتمو\\\" is a dialectal variant of \\\"اهتموا\\\" but with the same pronunciation? Actually \\\"اهتمو\\\" might be pronounced \\\"ah-tam-oo\\\" (with a long 'u' sound). \\\"اهتموا\\\" might be pronounced \\\"ah-tam-oo\\\" as well? Wait, in some dialects, the \\\"وا\\\" suffix might be pronounced as \\\"oo\\\" only, not \\\"wa\\\". For example, in some dialects, the plural imperative \\\"اهتموا\\\" might be pronounced \\\"اهتمو\\\" (ah-tam-oo). So the candidate \\\"اهتموا\\\" might be pronounced the same as \\\"اهتمو\\\" in some dialects. But the system says \\\"Differences in dialect that change pronunciation are considered errors.\\\" So if the pronunciation changes, it's error. But if the pronunciation is the same, it's variant. So we need to decide if the pronunciation is the same or not. In standard Arabic, \\\"اهتموا\\\"\",\"format\":\"unknown\",\"index\":0}]}}],\"usage\":{\"prompt_tokens\":367,\"completion_tokens\":900,\"total_tokens\":1267,\"prompt_tokens_details\":null}}"
+    }
+  },
+  "كامبريدج": {
+    "كامبريج": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "عمرو": {
+    "عمره": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "اصدر": {
+    "بعدها": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "بعدا": {
+    "بعدها": {
+      "verdict": "error",
+      "confidence": 0.0,
+      "reason": "all_models_failed_or_non_json",
+      "raw": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1762805334-4CiSgJ0oRZk0Rz9lxYIO\",\"provider\":\"Hyperbolic\",\"model\":\"openai/gpt-oss-20b\",\"object\":\"chat.completion\",\"created\":1762805334,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"length\",\"native_finish_reason\":\"length\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"refusal\":null,\"reasoning\":\"We need to judge orthography and pronunciation for Arabic (Lebanese dialect). Reference token: \\\"بعدا\\\". Candidate: \\\"بعدها\\\". Let's analyze.\\n\\nReference \\\"بعدا\\\" is the word \\\"بعداً\\\" meaning \\\"afterwards\\\" or \\\"later\\\". In Arabic, \\\"بعداً\\\" is pronounced \\\"ba'dan\\\" (with a short a after d?). Actually \\\"بعداً\\\" is pronounced \\\"ba'dan\\\" with a short a after d? Wait: \\\"بعداً\\\" is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? Actually \\\"بعداً\\\" is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? Let's think: \\\"بعداً\\\" is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? Actually \\\"ـاً\\\" is a tanween al-ayn? Wait, \\\"ـاً\\\" is a tanween al-ayn? No, \\\"ـاً\\\" is a tanween al-ayn? Actually \\\"ـاً\\\" is a tanween al-ayn? I'm mixing. Let's step back.\\n\\n\\\"بعداً\\\" is the word \\\"ba'dan\\\" meaning \\\"afterwards\\\". The \\\"ـاً\\\" is a tanween al-ayn? Actually \\\"ـاً\\\" is a tanween al-ayn? Wait, \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? Actually \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"We need to judge orthography and pronunciation for Arabic (Lebanese dialect). Reference token: \\\"بعدا\\\". Candidate: \\\"بعدها\\\". Let's analyze.\\n\\nReference \\\"بعدا\\\" is the word \\\"بعداً\\\" meaning \\\"afterwards\\\" or \\\"later\\\". In Arabic, \\\"بعداً\\\" is pronounced \\\"ba'dan\\\" (with a short a after d?). Actually \\\"بعداً\\\" is pronounced \\\"ba'dan\\\" with a short a after d? Wait: \\\"بعداً\\\" is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? Actually \\\"بعداً\\\" is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? Let's think: \\\"بعداً\\\" is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? Actually \\\"ـاً\\\" is a tanween al-ayn? Wait, \\\"ـاً\\\" is a tanween al-ayn? No, \\\"ـاً\\\" is a tanween al-ayn? Actually \\\"ـاً\\\" is a tanween al-ayn? I'm mixing. Let's step back.\\n\\n\\\"بعداً\\\" is the word \\\"ba'dan\\\" meaning \\\"afterwards\\\". The \\\"ـاً\\\" is a tanween al-ayn? Actually \\\"ـاً\\\" is a tanween al-ayn? Wait, \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? Actually \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short a after d? The \\\"ـاً\\\" is a tanween al-ayn? I'm not sure. But the pronunciation is \\\"ba'dan\\\" with a short\",\"format\":\"unknown\",\"index\":0}]}}],\"system_fingerprint\":\"\",\"usage\":{\"prompt_tokens\":398,\"completion_tokens\":900,\"total_tokens\":1298}}"
+    }
+  },
+  "علبنان": {
+    "علي": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "أربعة": {
+    "اربع": {
+      "verdict": "error",
+      "confidence": 0.0,
+      "reason": "all_models_failed_or_non_json",
+      "raw": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1762805344-YqjvkYrDuLt3TKgZxtDq\",\"provider\":\"Phala\",\"model\":\"openai/gpt-oss-20b\",\"object\":\"chat.completion\",\"created\":1762805344,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"length\",\"native_finish_reason\":\"length\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"refusal\":null,\"reasoning\":\"We need to judge orthography and pronunciation. Reference token: \\\"أربعة\\\" (Arabic word for four). Candidate: \\\"اربع\\\". Let's analyze.\\n\\nReference: \\\"أربعة\\\" spelled with alif with hamza? Actually \\\"أربعة\\\" is spelled: alif with hamza above (أ), ra (ر), ba (ب), alif (ا), ta marbuta? Wait \\\"أربعة\\\" is \\\"أربعة\\\" meaning \\\"four\\\" in Arabic. The standard spelling is \\\"أربعة\\\" (أ + ر + ب + ة). Actually \\\"أربعة\\\" ends with \\\"ة\\\" (ta marbuta). So the word is \\\"أربعة\\\" (أ + ر + ب + ة). The candidate \\\"اربع\\\" is spelled \\\"ا + ر + ب + ع\\\". Wait \\\"اربع\\\" is \\\"arba'\\\"? Actually \\\"اربع\\\" is \\\"arba'\\\"? Let's check: \\\"اربع\\\" is spelled \\\"ا + ر + ب + ع\\\". That is \\\"arba'\\\"? But the candidate \\\"اربع\\\" is missing the final \\\"ة\\\" and has a 'ع' instead of 'ة'. So the candidate is \\\"اربع\\\" which is a different word? Actually \\\"اربع\\\" is a variant of \\\"أربعة\\\" used in some dialects? In Lebanese dialect, \\\"أربعة\\\" is pronounced \\\"arba'a\\\" or \\\"arba'\\\". The candidate \\\"اربع\\\" might be a variant? Let's analyze.\\n\\nIn Arabic orthography, \\\"أربعة\\\" is the standard. \\\"اربع\\\" is a variant? The candidate \\\"اربع\\\" is missing the initial hamza? Actually \\\"اربع\\\" starts with alif (ا) not hamza. So the candidate is \\\"اربع\\\" (alif + ra + ba + 'a?). The candidate is missing the hamza and the final ta marbuta. So it's not the same orthography. But does it have the same pronunciation? In Lebanese dialect, \\\"أربعة\\\" is pronounced \\\"arba'a\\\" or \\\"arba\\\". The candidate \\\"اربع\\\" might be pronounced \\\"arba\\\" as well. But the candidate has a 'ع' at the end? Wait \\\"اربع\\\" ends with 'ع' (ayn). So the candidate is \\\"arba'\\\"? Actually \\\"اربع\\\" spelled \\\"ا ر ب ع\\\" ends with 'ع', which is pronounced as a glottal stop? Actually 'ع' is a voiced pharyngeal fricative. So \\\"اربع\\\" would be pronounced \\\"arbaʕ\\\" (with a pharyngeal fricative at the end). That is not the same as \\\"arbaʔ\\\" (ta marbuta). So the pronunciation differs. So it's an error.\\n\\nBut maybe the candidate \\\"اربع\\\" is a common variant of \\\"أربعة\\\" in Lebanese dialect? Let's check: In Lebanese dialect, \\\"أربعة\\\" is pronounced \\\"arba'a\\\" or \\\"arba\\\". The word \\\"اربع\\\" might be a colloquial variant? Actually \\\"اربع\\\" is a common colloquial form of \\\"أربعة\\\" used in some dialects, but the orthography is different. But the pronunciation might be similar: \\\"arba\\\" vs \\\"arbaʕ\\\"? The final 'ع' might be pronounced as a glottal stop or a pharyngeal fricative. In Lebanese dialect, the final 'ع' might be pronounced as a glottal stop or not pronounced at all. So the candidate might be considered a variant if the pronunciation is the same. But the system says: \\\"variant: the candidate token differs in spelling or orthography but has the same pronunciation as the reference token.\\\" So we need to decide if the pronunciation is the same. The reference \\\"أربعة\\\" is pronounced \\\"arbaʔ\\\" (ta marbuta pronounced as a glottal stop). The candidate \\\"اربع\\\" is pronounced \\\"arbaʕ\\\" (with a pharyngeal fricative). That is not the same. So it's an error.\\n\\nBut maybe the candidate \\\"اربع\\\" is missing the final 'ة' but has 'ع' which might be a mis-typing. The candidate is \\\"اربع\\\" which is a\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"We need to judge orthography and pronunciation. Reference token: \\\"أربعة\\\" (Arabic word for four). Candidate: \\\"اربع\\\". Let's analyze.\\n\\nReference: \\\"أربعة\\\" spelled with alif with hamza? Actually \\\"أربعة\\\" is spelled: alif with hamza above (أ), ra (ر), ba (ب), alif (ا), ta marbuta? Wait \\\"أربعة\\\" is \\\"أربعة\\\" meaning \\\"four\\\" in Arabic. The standard spelling is \\\"أربعة\\\" (أ + ر + ب + ة). Actually \\\"أربعة\\\" ends with \\\"ة\\\" (ta marbuta). So the word is \\\"أربعة\\\" (أ + ر + ب + ة). The candidate \\\"اربع\\\" is spelled \\\"ا + ر + ب + ع\\\". Wait \\\"اربع\\\" is \\\"arba'\\\"? Actually \\\"اربع\\\" is \\\"arba'\\\"? Let's check: \\\"اربع\\\" is spelled \\\"ا + ر + ب + ع\\\". That is \\\"arba'\\\"? But the candidate \\\"اربع\\\" is missing the final \\\"ة\\\" and has a 'ع' instead of 'ة'. So the candidate is \\\"اربع\\\" which is a different word? Actually \\\"اربع\\\" is a variant of \\\"أربعة\\\" used in some dialects? In Lebanese dialect, \\\"أربعة\\\" is pronounced \\\"arba'a\\\" or \\\"arba'\\\". The candidate \\\"اربع\\\" might be a variant? Let's analyze.\\n\\nIn Arabic orthography, \\\"أربعة\\\" is the standard. \\\"اربع\\\" is a variant? The candidate \\\"اربع\\\" is missing the initial hamza? Actually \\\"اربع\\\" starts with alif (ا) not hamza. So the candidate is \\\"اربع\\\" (alif + ra + ba + 'a?). The candidate is missing the hamza and the final ta marbuta. So it's not the same orthography. But does it have the same pronunciation? In Lebanese dialect, \\\"أربعة\\\" is pronounced \\\"arba'a\\\" or \\\"arba\\\". The candidate \\\"اربع\\\" might be pronounced \\\"arba\\\" as well. But the candidate has a 'ع' at the end? Wait \\\"اربع\\\" ends with 'ع' (ayn). So the candidate is \\\"arba'\\\"? Actually \\\"اربع\\\" spelled \\\"ا ر ب ع\\\" ends with 'ع', which is pronounced as a glottal stop? Actually 'ع' is a voiced pharyngeal fricative. So \\\"اربع\\\" would be pronounced \\\"arbaʕ\\\" (with a pharyngeal fricative at the end). That is not the same as \\\"arbaʔ\\\" (ta marbuta). So the pronunciation differs. So it's an error.\\n\\nBut maybe the candidate \\\"اربع\\\" is a common variant of \\\"أربعة\\\" in Lebanese dialect? Let's check: In Lebanese dialect, \\\"أربعة\\\" is pronounced \\\"arba'a\\\" or \\\"arba\\\". The word \\\"اربع\\\" might be a colloquial variant? Actually \\\"اربع\\\" is a common colloquial form of \\\"أربعة\\\" used in some dialects, but the orthography is different. But the pronunciation might be similar: \\\"arba\\\" vs \\\"arbaʕ\\\"? The final 'ع' might be pronounced as a glottal stop or a pharyngeal fricative. In Lebanese dialect, the final 'ع' might be pronounced as a glottal stop or not pronounced at all. So the candidate might be considered a variant if the pronunciation is the same. But the system says: \\\"variant: the candidate token differs in spelling or orthography but has the same pronunciation as the reference token.\\\" So we need to decide if the pronunciation is the same. The reference \\\"أربعة\\\" is pronounced \\\"arbaʔ\\\" (ta marbuta pronounced as a glottal stop). The candidate \\\"اربع\\\" is pronounced \\\"arbaʕ\\\" (with a pharyngeal fricative). That is not the same. So it's an error.\\n\\nBut maybe the candidate \\\"اربع\\\" is missing the final 'ة' but has 'ع' which might be a mis-typing. The candidate is \\\"اربع\\\" which is a\",\"format\":\"unknown\",\"index\":0}]}}],\"usage\":{\"prompt_tokens\":397,\"completion_tokens\":900,\"total_tokens\":1297}}"
+    }
+  },
+  "ليتلعم": {
+    "ليتعلم": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "لل": {
+    "للعاصمه": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "المتمرده": {
+    "المترده": {
+      "verdict": "error",
+      "confidence": 0.0,
+      "reason": "all_models_failed_or_non_json",
+      "raw": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1762805359-7zQXStQbedJ0EvHTRHZk\",\"provider\":\"Together\",\"model\":\"openai/gpt-oss-20b\",\"object\":\"chat.completion\",\"created\":1762805359,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"length\",\"native_finish_reason\":\"length\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"refusal\":null,\"reasoning\":\"We need to judge orthography and pronunciation for Arabic (Lebanese dialect). Reference token: \\\"المتمرده\\\". Candidate: \\\"المترده\\\". Let's analyze.\\n\\nReference: \\\"المتمرده\\\" spelled: al- (ال) + متمرده? Actually \\\"المتمرده\\\" is a noun meaning \\\"the rebellious one\\\" (feminine?). The root: \\\"متمرد\\\" (muttamarrad?) Actually \\\"متمرد\\\" is \\\"rebellious\\\" (masc). The feminine form \\\"متمردة\\\" (muttamarrada). But \\\"المتمرده\\\" is the definite article + feminine noun \\\"المتمردة\\\" but spelled \\\"المتمرده\\\" with a hamza? Wait: \\\"المتمرده\\\" spelled: al + m + t + m + r + d + h? Let's check: \\\"المتمرده\\\" is spelled: al + m + t + m + r + d + h? Actually Arabic letters: alif lam (ال) + m (م) + ta (ت) + m (م) + ra (ر) + d (د) + ha (ه). So \\\"المتمرده\\\" is \\\"al-muttamarrad-h\\\"? Wait, the root \\\"متمرد\\\" is spelled: م + ت + م + ر + د. The feminine form adds \\\"ة\\\" at the end: متمردة. But \\\"المتمرده\\\" uses \\\"ه\\\" at the end, not \\\"ة\\\". That indicates the word is masculine? Actually \\\"المتمرده\\\" with \\\"ه\\\" at the end is the masculine form \\\"المتمرد\\\" with a hamza? Wait, \\\"المتمرد\\\" would be spelled: al + m + t + m + r + d. But \\\"المتمرده\\\" has an extra \\\"ه\\\" at the end. That indicates the word is \\\"المتمرده\\\" meaning \\\"the rebellious one\\\" (feminine) but spelled with \\\"ه\\\" instead of \\\"ة\\\"? Actually in Arabic, the feminine ending is \\\"ة\\\" (taa marbuta). But \\\"ه\\\" is a letter \\\"ha\\\" used as a suffix for the masculine indefinite? Wait, \\\"المتمرده\\\" might be a mis-spelling of \\\"المتمردة\\\" (feminine). But the candidate \\\"المترده\\\" is spelled: al + m + t + r + d + h? Actually \\\"المترده\\\" spelled: al + m + t + r + d + h. That is \\\"المترده\\\" missing the second \\\"م\\\" after \\\"ت\\\". So the candidate is missing a letter \\\"م\\\" after \\\"ت\\\". So the candidate is \\\"المترده\\\" (al-matred-h). That is a different word: \\\"المترده\\\" would be \\\"the one who is rebellious\\\" but spelled incorrectly? Actually \\\"المترده\\\" is not a standard word; the correct feminine is \\\"المتمردة\\\" or \\\"المتمردة\\\" with \\\"ة\\\". The candidate \\\"المترده\\\" is missing the \\\"م\\\" after \\\"ت\\\". So the candidate is not a variant of the reference; it's a different spelling and likely a different pronunciation. Let's analyze pronunciation: Reference \\\"المتمرده\\\" pronounced: al-mu-tam-ru-dha? Actually \\\"المتمرده\\\" would be pronounced: al-mu-tam-ru-dha? Wait, \\\"المتمرده\\\" has the root \\\"متمرد\\\" with a hamza? Actually \\\"المتمرده\\\" would be pronounced: al-mu-tam-ru-dha? The \\\"ه\\\" at the end is pronounced as \\\"ha\\\" (h). So the word is \\\"al-mu-tam-ru-dha\\\". The candidate \\\"المترده\\\" would be pronounced: al-mu-tar-dha? Actually \\\"المترده\\\" would be pronounced: al-mu-tar-dha? Wait, \\\"المترده\\\" spelled: al + m + t + r + d + h. So the pronunciation would be \\\"al-mu-tar-dha\\\"? Actually the \\\"t\\\" after \\\"m\\\" is \\\"t\\\" and then \\\"r\\\" is \\\"r\\\". So \\\"المترده\\\" would be \\\"al-mu-tar-dha\\\". That is different from \\\"al-mu-tam-ru\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"We need to judge orthography and pronunciation for Arabic (Lebanese dialect). Reference token: \\\"المتمرده\\\". Candidate: \\\"المترده\\\". Let's analyze.\\n\\nReference: \\\"المتمرده\\\" spelled: al- (ال) + متمرده? Actually \\\"المتمرده\\\" is a noun meaning \\\"the rebellious one\\\" (feminine?). The root: \\\"متمرد\\\" (muttamarrad?) Actually \\\"متمرد\\\" is \\\"rebellious\\\" (masc). The feminine form \\\"متمردة\\\" (muttamarrada). But \\\"المتمرده\\\" is the definite article + feminine noun \\\"المتمردة\\\" but spelled \\\"المتمرده\\\" with a hamza? Wait: \\\"المتمرده\\\" spelled: al + m + t + m + r + d + h? Let's check: \\\"المتمرده\\\" is spelled: al + m + t + m + r + d + h? Actually Arabic letters: alif lam (ال) + m (م) + ta (ت) + m (م) + ra (ر) + d (د) + ha (ه). So \\\"المتمرده\\\" is \\\"al-muttamarrad-h\\\"? Wait, the root \\\"متمرد\\\" is spelled: م + ت + م + ر + د. The feminine form adds \\\"ة\\\" at the end: متمردة. But \\\"المتمرده\\\" uses \\\"ه\\\" at the end, not \\\"ة\\\". That indicates the word is masculine? Actually \\\"المتمرده\\\" with \\\"ه\\\" at the end is the masculine form \\\"المتمرد\\\" with a hamza? Wait, \\\"المتمرد\\\" would be spelled: al + m + t + m + r + d. But \\\"المتمرده\\\" has an extra \\\"ه\\\" at the end. That indicates the word is \\\"المتمرده\\\" meaning \\\"the rebellious one\\\" (feminine) but spelled with \\\"ه\\\" instead of \\\"ة\\\"? Actually in Arabic, the feminine ending is \\\"ة\\\" (taa marbuta). But \\\"ه\\\" is a letter \\\"ha\\\" used as a suffix for the masculine indefinite? Wait, \\\"المتمرده\\\" might be a mis-spelling of \\\"المتمردة\\\" (feminine). But the candidate \\\"المترده\\\" is spelled: al + m + t + r + d + h? Actually \\\"المترده\\\" spelled: al + m + t + r + d + h. That is \\\"المترده\\\" missing the second \\\"م\\\" after \\\"ت\\\". So the candidate is missing a letter \\\"م\\\" after \\\"ت\\\". So the candidate is \\\"المترده\\\" (al-matred-h). That is a different word: \\\"المترده\\\" would be \\\"the one who is rebellious\\\" but spelled incorrectly? Actually \\\"المترده\\\" is not a standard word; the correct feminine is \\\"المتمردة\\\" or \\\"المتمردة\\\" with \\\"ة\\\". The candidate \\\"المترده\\\" is missing the \\\"م\\\" after \\\"ت\\\". So the candidate is not a variant of the reference; it's a different spelling and likely a different pronunciation. Let's analyze pronunciation: Reference \\\"المتمرده\\\" pronounced: al-mu-tam-ru-dha? Actually \\\"المتمرده\\\" would be pronounced: al-mu-tam-ru-dha? Wait, \\\"المتمرده\\\" has the root \\\"متمرد\\\" with a hamza? Actually \\\"المتمرده\\\" would be pronounced: al-mu-tam-ru-dha? The \\\"ه\\\" at the end is pronounced as \\\"ha\\\" (h). So the word is \\\"al-mu-tam-ru-dha\\\". The candidate \\\"المترده\\\" would be pronounced: al-mu-tar-dha? Actually \\\"المترده\\\" would be pronounced: al-mu-tar-dha? Wait, \\\"المترده\\\" spelled: al + m + t + r + d + h. So the pronunciation would be \\\"al-mu-tar-dha\\\"? Actually the \\\"t\\\" after \\\"m\\\" is \\\"t\\\" and then \\\"r\\\" is \\\"r\\\". So \\\"المترده\\\" would be \\\"al-mu-tar-dha\\\". That is different from \\\"al-mu-tam-ru\",\"format\":\"unknown\",\"index\":0}]}}],\"usage\":{\"prompt_tokens\":400,\"completion_tokens\":900,\"total_tokens\":1300,\"prompt_tokens_details\":null}}"
+    }
+  },
+  "عنيويورك": {
+    "علي": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "نشر": {
+    "ونشر": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "الانكليزيه": {
+    "الانجليزيه": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "اسمو": {
+    "اسمه": {
+      "verdict": "variant",
+      "confidence": 0.85,
+      "raw": "{\"verdict\":\"variant\",\"confidence\":0.85}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "بوقتا": {
+    "بوقتها": {
+      "verdict": "error",
+      "confidence": 0.0,
+      "reason": "all_models_failed_or_non_json",
+      "raw": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1762805414-ZyEzMKx6ugA1aegY5KpA\",\"provider\":\"DeepInfra\",\"model\":\"openai/gpt-oss-20b\",\"object\":\"chat.completion\",\"created\":1762805414,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"stop\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"refusal\":null,\"reasoning\":\"We need to judge if candidate token \\\"بوقتها\\\" matches reference token \\\"بوقتا\\\". Let's analyze.\\n\\nReference: بوقتا. This is Arabic word \\\"بوقتا\\\" meaning \\\"when the horn sounded\\\" or \\\"at the time of the horn\\\"? Actually \\\"بوق\\\" is \\\"horn\\\" and \\\"بوقتا\\\" is a form of \\\"بوق\\\" with suffix \\\"ـا\\\" maybe \\\"when the horn sounded\\\" or \\\"at the time of the horn\\\". The word \\\"بوقتا\\\" is a form of \\\"بوق\\\" with the suffix \\\"ـا\\\" meaning \\\"when\\\" or \\\"at the time of\\\". In Arabic, \\\"بوق\\\" + \\\"ـا\\\" yields \\\"بوقا\\\" maybe? But \\\"بوقتا\\\" is a form of \\\"بوق\\\" with the suffix \\\"ـا\\\" and the suffix \\\"ـت\\\" maybe? Actually \\\"بوق\\\" + \\\"ـت\\\" + \\\"ـا\\\" yields \\\"بوقتا\\\". This is a form of \\\"بوق\\\" with the suffix \\\"ـت\\\" (past tense marker?) Actually \\\"بوق\\\" is a noun, but \\\"بوقتا\\\" is a form of \\\"بوق\\\" with the suffix \\\"ـت\\\" and \\\"ـا\\\" meaning \\\"when the horn sounded\\\" or \\\"at the time of the horn\\\". So \\\"بوقتا\\\" is a word.\\n\\nCandidate: \\\"بوقتها\\\". This is \\\"بوق\\\" + \\\"ـه\\\" + \\\"ـا\\\" maybe? Actually \\\"بوقتها\\\" is \\\"بوق\\\" + \\\"ـه\\\" + \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? Actually \\\"بوقتها\\\" is \\\"بوق\\\" + \\\"ـه\\\" + \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" (his). But \\\"بوقتها\\\" is a different word: \\\"بوق\\\" + \\\"ـه\\\" + \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? Actually \\\"بوقتها\\\" is \\\"بوق\\\" + \\\"ـه\\\" + \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? Wait, \\\"بوقتها\\\" is a form of \\\"بوق\\\" with the suffix \\\"ـه\\\" (possessive pronoun \\\"his\\\") and \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? Actually \\\"بوقتها\\\" is a form of \\\"بوق\\\" with the suffix \\\"ـه\\\" and \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? I'm not sure.\\n\\nBut the difference: \\\"بوقتا\\\" vs \\\"بوقتها\\\". The candidate has an extra \\\"ه\\\" letter. So the candidate is \\\"بوقتها\\\" which is a different word: \\\"بوق\\\" + \\\"ـه\\\" + \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? Actually \\\"بوقتها\\\" is a form of \\\"بوق\\\" with the suffix \\\"ـه\\\" and \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? I'm not sure.\\n\\nBut the difference is that \\\"بوقتها\\\" is a different word: \\\"بوق\\\" + \\\"ـه\\\" + \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? Actually \\\"بوقتها\\\" is a form of \\\"بوق\\\" with the suffix \\\"ـه\\\" and \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? I'm not sure.\\n\\nBut the difference is that \\\"بوقتها\\\" is a different word: \\\"بوق\\\" + \\\"ـه\\\" + \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? Actually \\\"بوقتها\\\" is a form of \\\"بوق\\\" with the suffix \\\"ـه\\\" and \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? I'm not sure.\\n\\nBut the difference is that \\\"بوقتها\\\" is a different word: \\\"بوق\\\" + \\\"ـه\\\" + \\\"\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"We need to judge if candidate token \\\"بوقتها\\\" matches reference token \\\"بوقتا\\\". Let's analyze.\\n\\nReference: بوقتا. This is Arabic word \\\"بوقتا\\\" meaning \\\"when the horn sounded\\\" or \\\"at the time of the horn\\\"? Actually \\\"بوق\\\" is \\\"horn\\\" and \\\"بوقتا\\\" is a form of \\\"بوق\\\" with suffix \\\"ـا\\\" maybe \\\"when the horn sounded\\\" or \\\"at the time of the horn\\\". The word \\\"بوقتا\\\" is a form of \\\"بوق\\\" with the suffix \\\"ـا\\\" meaning \\\"when\\\" or \\\"at the time of\\\". In Arabic, \\\"بوق\\\" + \\\"ـا\\\" yields \\\"بوقا\\\" maybe? But \\\"بوقتا\\\" is a form of \\\"بوق\\\" with the suffix \\\"ـا\\\" and the suffix \\\"ـت\\\" maybe? Actually \\\"بوق\\\" + \\\"ـت\\\" + \\\"ـا\\\" yields \\\"بوقتا\\\". This is a form of \\\"بوق\\\" with the suffix \\\"ـت\\\" (past tense marker?) Actually \\\"بوق\\\" is a noun, but \\\"بوقتا\\\" is a form of \\\"بوق\\\" with the suffix \\\"ـت\\\" and \\\"ـا\\\" meaning \\\"when the horn sounded\\\" or \\\"at the time of the horn\\\". So \\\"بوقتا\\\" is a word.\\n\\nCandidate: \\\"بوقتها\\\". This is \\\"بوق\\\" + \\\"ـه\\\" + \\\"ـا\\\" maybe? Actually \\\"بوقتها\\\" is \\\"بوق\\\" + \\\"ـه\\\" + \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? Actually \\\"بوقتها\\\" is \\\"بوق\\\" + \\\"ـه\\\" + \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" (his). But \\\"بوقتها\\\" is a different word: \\\"بوق\\\" + \\\"ـه\\\" + \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? Actually \\\"بوقتها\\\" is \\\"بوق\\\" + \\\"ـه\\\" + \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? Wait, \\\"بوقتها\\\" is a form of \\\"بوق\\\" with the suffix \\\"ـه\\\" (possessive pronoun \\\"his\\\") and \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? Actually \\\"بوقتها\\\" is a form of \\\"بوق\\\" with the suffix \\\"ـه\\\" and \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? I'm not sure.\\n\\nBut the difference: \\\"بوقتا\\\" vs \\\"بوقتها\\\". The candidate has an extra \\\"ه\\\" letter. So the candidate is \\\"بوقتها\\\" which is a different word: \\\"بوق\\\" + \\\"ـه\\\" + \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? Actually \\\"بوقتها\\\" is a form of \\\"بوق\\\" with the suffix \\\"ـه\\\" and \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? I'm not sure.\\n\\nBut the difference is that \\\"بوقتها\\\" is a different word: \\\"بوق\\\" + \\\"ـه\\\" + \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? Actually \\\"بوقتها\\\" is a form of \\\"بوق\\\" with the suffix \\\"ـه\\\" and \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? I'm not sure.\\n\\nBut the difference is that \\\"بوقتها\\\" is a different word: \\\"بوق\\\" + \\\"ـه\\\" + \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? Actually \\\"بوقتها\\\" is a form of \\\"بوق\\\" with the suffix \\\"ـه\\\" and \\\"ـا\\\" meaning \\\"when the horn sounded\\\" but with the pronoun \\\"ه\\\" inserted? I'm not sure.\\n\\nBut the difference is that \\\"بوقتها\\\" is a different word: \\\"بوق\\\" + \\\"ـه\\\" + \\\"\",\"format\":\"unknown\",\"index\":0}]}}],\"usage\":{\"prompt_tokens\":367,\"completion_tokens\":900,\"total_tokens\":1267,\"prompt_tokens_details\":null}}"
+    }
+  },
+  "بقولو": {
+    "بيقولوا": {
+      "verdict": "error",
+      "confidence": 0.95,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.95}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "لاقي": {
+    "لقي": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "طباعتو": {
+    "طباعه": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "شهرتو": {
+    "شهرته": {
+      "verdict": "error",
+      "confidence": 0.0,
+      "reason": "all_models_failed_or_non_json",
+      "raw": "\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1762805436-HBxLdXvcHzQEAaQqOAkt\",\"provider\":\"Hyperbolic\",\"model\":\"openai/gpt-oss-20b\",\"object\":\"chat.completion\",\"created\":1762805436,\"choices\":[{\"logprobs\":null,\"finish_reason\":\"length\",\"native_finish_reason\":\"length\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"refusal\":null,\"reasoning\":\"We need to judge orthography and pronunciation for Arabic (Lebanese dialect). Reference token: \\\"شهرتو\\\". Candidate: \\\"شهرته\\\". Let's analyze.\\n\\nReference \\\"شهرتو\\\" is likely the word \\\"شهرتو\\\" meaning \\\"his fame\\\" or \\\"his reputation\\\" in Lebanese dialect? Actually \\\"شهرتو\\\" is a colloquial form of \\\"شهرتو\\\" meaning \\\"his fame\\\" (his reputation). The standard Arabic would be \\\"شهرتُه\\\" (his fame). In Lebanese dialect, \\\"شهرتو\\\" is used. Candidate \\\"شهرته\\\" is \\\"شهرتِه\\\" meaning \\\"his fame\\\" as well? Actually \\\"شهرته\\\" is \\\"شهرتِه\\\" meaning \\\"his fame\\\" as well. The difference: \\\"شهرتو\\\" vs \\\"شهرته\\\". In Lebanese dialect, \\\"شهرتو\\\" is the colloquial form, while \\\"شهرته\\\" is the standard Arabic form. Pronunciation: \\\"شهرتو\\\" pronounced [ʃahruː] maybe? Actually \\\"شهرتو\\\" would be pronounced [ʃahruː] or [ʃahruː]? Wait, \\\"شهرتو\\\" is \\\"شهرتو\\\" with \\\"و\\\" at the end, pronounced [ʃahruː] (like \\\"shah-roo\\\"). \\\"شهرته\\\" ends with \\\"ه\\\" (هاء), pronounced [ʃahriː]? Actually \\\"شهرته\\\" would be pronounced [ʃahriː] or [ʃahriː]? Wait, \\\"شهرته\\\" is \\\"شهرتِه\\\" with a hamza? Actually \\\"شهرته\\\" is \\\"شهرتِه\\\" meaning \\\"his fame\\\" but spelled with \\\"ه\\\" at the end. In Arabic, \\\"شهرتو\\\" is \\\"شهرتُه\\\" (his fame). The difference is the final vowel: \\\"و\\\" vs \\\"ه\\\". In Lebanese dialect, \\\"شهرتو\\\" is used. \\\"شهرته\\\" is the standard Arabic. Pronunciation difference: \\\"شهرتو\\\" ends with a long \\\"u\\\" sound [uː], while \\\"شهرته\\\" ends with a short \\\"i\\\" or \\\"e\\\" sound? Actually \\\"شهرته\\\" would be pronounced [ʃahriː] or [ʃahri]? Wait, \\\"شهرته\\\" is \\\"شهرتِه\\\" with a hamza? Actually \\\"شهرته\\\" is \\\"شهرتِه\\\" with a hamza? Let's think: \\\"شهرته\\\" spelled \\\"شهرته\\\" (شهر + ه). The \\\"ه\\\" at the end is a letter \\\"ه\\\" that can be pronounced as [h] or as a vowel [i] depending on context. In \\\"شهرته\\\", the \\\"ه\\\" is a suffix pronoun \\\"ه\\\" meaning \\\"his\\\". In Arabic, \\\"شهرته\\\" would be pronounced [ʃahriː] or [ʃahri]? Actually \\\"ه\\\" as a suffix pronoun is pronounced [i] or [e] depending on the preceding vowel. For example, \\\"كتاب\\\" + \\\"ه\\\" = \\\"كتابه\\\" pronounced [kitaːbih] or [kitaːbih]? Actually \\\"ه\\\" as a suffix pronoun is pronounced [i] or [e] depending on the preceding vowel. For \\\"شهرته\\\", the preceding vowel is \\\"ة\\\" (ta marbuta) which is pronounced [a] or [i] depending on context. But \\\"شهرته\\\" is \\\"شهرت\\\" + \\\"ه\\\" (his). \\\"شهرت\\\" is \\\"fame\\\" with a short \\\"a\\\" vowel. So \\\"شهرت\\\" + \\\"ه\\\" would be pronounced [ʃahriː] or [ʃahri]? Actually \\\"شهرت\\\" is pronounced [ʃahra] (with a short a). Then adding \\\"ه\\\" would produce [ʃahri] or [ʃahriː]? The \\\"ه\\\" as a suffix pronoun is pronounced [i] or [e] depending on the preceding vowel. For \\\"شهرت\\\" + \\\"ه\\\", the preceding vowel is \\\"a\\\" (short a). So the\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"We need to judge orthography and pronunciation for Arabic (Lebanese dialect). Reference token: \\\"شهرتو\\\". Candidate: \\\"شهرته\\\". Let's analyze.\\n\\nReference \\\"شهرتو\\\" is likely the word \\\"شهرتو\\\" meaning \\\"his fame\\\" or \\\"his reputation\\\" in Lebanese dialect? Actually \\\"شهرتو\\\" is a colloquial form of \\\"شهرتو\\\" meaning \\\"his fame\\\" (his reputation). The standard Arabic would be \\\"شهرتُه\\\" (his fame). In Lebanese dialect, \\\"شهرتو\\\" is used. Candidate \\\"شهرته\\\" is \\\"شهرتِه\\\" meaning \\\"his fame\\\" as well? Actually \\\"شهرته\\\" is \\\"شهرتِه\\\" meaning \\\"his fame\\\" as well. The difference: \\\"شهرتو\\\" vs \\\"شهرته\\\". In Lebanese dialect, \\\"شهرتو\\\" is the colloquial form, while \\\"شهرته\\\" is the standard Arabic form. Pronunciation: \\\"شهرتو\\\" pronounced [ʃahruː] maybe? Actually \\\"شهرتو\\\" would be pronounced [ʃahruː] or [ʃahruː]? Wait, \\\"شهرتو\\\" is \\\"شهرتو\\\" with \\\"و\\\" at the end, pronounced [ʃahruː] (like \\\"shah-roo\\\"). \\\"شهرته\\\" ends with \\\"ه\\\" (هاء), pronounced [ʃahriː]? Actually \\\"شهرته\\\" would be pronounced [ʃahriː] or [ʃahriː]? Wait, \\\"شهرته\\\" is \\\"شهرتِه\\\" with a hamza? Actually \\\"شهرته\\\" is \\\"شهرتِه\\\" meaning \\\"his fame\\\" but spelled with \\\"ه\\\" at the end. In Arabic, \\\"شهرتو\\\" is \\\"شهرتُه\\\" (his fame). The difference is the final vowel: \\\"و\\\" vs \\\"ه\\\". In Lebanese dialect, \\\"شهرتو\\\" is used. \\\"شهرته\\\" is the standard Arabic. Pronunciation difference: \\\"شهرتو\\\" ends with a long \\\"u\\\" sound [uː], while \\\"شهرته\\\" ends with a short \\\"i\\\" or \\\"e\\\" sound? Actually \\\"شهرته\\\" would be pronounced [ʃahriː] or [ʃahri]? Wait, \\\"شهرته\\\" is \\\"شهرتِه\\\" with a hamza? Actually \\\"شهرته\\\" is \\\"شهرتِه\\\" with a hamza? Let's think: \\\"شهرته\\\" spelled \\\"شهرته\\\" (شهر + ه). The \\\"ه\\\" at the end is a letter \\\"ه\\\" that can be pronounced as [h] or as a vowel [i] depending on context. In \\\"شهرته\\\", the \\\"ه\\\" is a suffix pronoun \\\"ه\\\" meaning \\\"his\\\". In Arabic, \\\"شهرته\\\" would be pronounced [ʃahriː] or [ʃahri]? Actually \\\"ه\\\" as a suffix pronoun is pronounced [i] or [e] depending on the preceding vowel. For example, \\\"كتاب\\\" + \\\"ه\\\" = \\\"كتابه\\\" pronounced [kitaːbih] or [kitaːbih]? Actually \\\"ه\\\" as a suffix pronoun is pronounced [i] or [e] depending on the preceding vowel. For \\\"شهرته\\\", the preceding vowel is \\\"ة\\\" (ta marbuta) which is pronounced [a] or [i] depending on context. But \\\"شهرته\\\" is \\\"شهرت\\\" + \\\"ه\\\" (his). \\\"شهرت\\\" is \\\"fame\\\" with a short \\\"a\\\" vowel. So \\\"شهرت\\\" + \\\"ه\\\" would be pronounced [ʃahriː] or [ʃahri]? Actually \\\"شهرت\\\" is pronounced [ʃahra] (with a short a). Then adding \\\"ه\\\" would produce [ʃahri] or [ʃahriː]? The \\\"ه\\\" as a suffix pronoun is pronounced [i] or [e] depending on the preceding vowel. For \\\"شهرت\\\" + \\\"ه\\\", the preceding vowel is \\\"a\\\" (short a). So the\",\"format\":\"unknown\",\"index\":0}]}}],\"system_fingerprint\":\"\",\"usage\":{\"prompt_tokens\":400,\"completion_tokens\":900,\"total_tokens\":1300}}"
+    }
+  },
+  "عاميركا": {
+    "علي": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  },
+  "ال": {
+    "الرابطه": {
+      "verdict": "error",
+      "confidence": 0.99,
+      "raw": "{\"verdict\":\"error\",\"confidence\":0.99}",
+      "model_used": "openai/gpt-oss-20b"
+    }
+  }
+}
