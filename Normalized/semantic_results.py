@@ -272,7 +272,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--ground-truth", default=GROUND_TRUTH, help="path to mainn.json ground truth")
     parser.add_argument("--out", default=OUTPUT_FILE, help="output json file")
-    parser.add_argument("--model", default="openai/gpt-oss-20b:free", help="OpenRouter model id")
+    parser.add_argument("--model", default="openai/gpt-oss-20b", help="OpenRouter model id")
     parser.add_argument("--max-llm-calls", type=int, default=500, help="max total LLM calls (per run)")
     parser.add_argument("--llm-delay", type=float, default=0.35, help="seconds to wait between LLM calls")
     parser.add_argument("--dry-run-llm", action="store_true", help="do not call LLM even if key is present")
