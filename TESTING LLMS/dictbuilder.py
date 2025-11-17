@@ -10,8 +10,10 @@ OUTPUT_FILE = "episodes_with_transliterations.json"
 RATE_LIMIT_DELAY = 2  # seconds between requests to avoid rate limits
 MODEL = "gpt-4o"  # or whichever you use
 
-# === SETUP OPENAI ===
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") 
+raw_key = os.getenv("OPENAI_API_KEY", "")
+OPENAI_API_KEY = raw_key.replace("\xa0", " ").strip()
+if not OPENAI_API_KEY:
+    raise RuntimeError("Missing OPENAI_API_KEY")
 client = OpenAI(api_key=OPENAI_API_KEY)
 
 

@@ -16,10 +16,9 @@ from openai import OpenAI
 # ==== CONFIG ====
 DEFAULT_SAMPLE_RATE = 16000
 DEFAULT_LANGUAGE_CODE = "ar"
-OUTPUT_PATH = Path("TESTING_LLMS/gpt4o_transcribe/test_gpt4o.json")
+OUTPUT_PATH = Path("TESTING LLMS") / "GPT4o" / "test_gpt4o1.json" 
 MAX_WORKERS = 4  # safe number for API calls
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-
+OPENAI_API_KEY = "sk-REDACTED"  # replace with your actual key
 lock = threading.Lock()
 client = OpenAI(api_key=OPENAI_API_KEY)
 
@@ -98,9 +97,9 @@ def process_entry(idx: int, entry: dict):
 
 
 def main():
-    manifest_path = Path("SCRAPE/main.json")
+    manifest_path = Path("SCRAPE/main2.json")
     if not manifest_path.exists():
-        log("❌ SCRAPE/main.json not found")
+        log("❌ SCRAPE/main2.json not found")
         return
 
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))

@@ -5,16 +5,12 @@ import time
 from pathlib import Path
 from typing import Any
 
-import requests
 from bs4 import BeautifulSoup
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 INPUT_PATH = ROOT / "SCRAPE" / "main.json"
 OUTPUT_PATH = ROOT / "SCRAPE" / "enriched" / "main_with_vocab.json"
-AUDIO_DIR = ROOT / "SCRAPE" / "audios_scraped"
-
-AUDIO_DIR.mkdir(parents=True, exist_ok=True)
 OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 
@@ -36,47 +32,28 @@ def extract_vocab_fallback(html: str) -> list[str]:
     return []
 
 
-def download_audio(url: str | None) -> str | None:
-    if not url:
-        return None
-
-    filename = url.split("/")[-1].split("?")[0]
-    dest = AUDIO_DIR / filename
-
-    try:
-        with requests.get(url, stream=True, timeout=60) as response:
-            response.raise_for_status()
-            with open(dest, "wb") as handle:
-                for chunk in response.iter_content(chunk_size=8192):
-                    handle.write(chunk)
-    except Exception as exc:  # noqa: BLE001
-        print(f"   ! audio download failed → {exc}")
-        return None
-
-    return str(dest.relative_to(ROOT))
-
-
 def enrich_episode(page, episode: dict[str, Any]) -> dict[str, Any]:
     enriched = dict(episode)
 
     episode_url = episode.get("episode_url")
     if not episode_url:
-        enriched["audio_url"] = None
         enriched["vocab"] = []
         return enriched
 
-    try:
-        page.goto(episode_url, wait_until="domcontentloaded", timeout=60_000)
-    except PlaywrightTimeoutError as exc:
-        print(f"   ! navigation timed out → {exc}")
-        enriched["audio_url"] = None
-        enriched["vocab"] = []
-        return enriched
+    for attempt in range(3):
+        try:
+            page.goto(episode_url, wait_until="domcontentloaded", timeout=60_000)
+            page.wait_for_load_state("networkidle", timeout=30_000)
+            break
+        except PlaywrightTimeoutError as exc:
+            if attempt == 2:
+                print(f"   ! navigation timed out → {exc}")
+                enriched["vocab"] = []
+                return enriched
+            print("   ! navigation retrying...")
+            page.wait_for_timeout(1500)
 
     time.sleep(1.5)
-
-    audio_url = page.eval_on_selector("audio", "el => el.src") if page.query_selector("audio") else None
-    enriched["audio_url"] = download_audio(audio_url)
 
     try:
         table_locator = page.locator("table:has(th:has-text('Lebanese Arabic'))")
@@ -111,7 +88,6 @@ def main() -> None:
             except Exception as exc:  # noqa: BLE001
                 print(f"   ! failed to scrape → {exc}")
                 failed = dict(episode)
-                failed["audio_url"] = None
                 failed["vocab"] = []
                 enriched_episodes.append(failed)
 
@@ -125,3 +101,6 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+
