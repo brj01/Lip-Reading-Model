@@ -16,10 +16,11 @@ from urllib.parse import urlparse
 import numpy as np
 from moviepy import AudioFileClip, VideoClip
 from PIL import Image, ImageDraw, ImageFont
+import arabic_reshaper
 
 
 def parse_args() -> argparse.Namespace:
-    default_output = Path(__file__).resolve().parent / "karaoke.mp4"
+    default_output = Path(__file__).resolve().parent / "karaoke1.mp4"
     parser = argparse.ArgumentParser(description="Render karaoke MP4 from align_*.json")
     parser.add_argument("alignment", type=Path, help="Path to align_*.json")
     parser.add_argument("--output", type=Path, default=default_output)
@@ -32,6 +33,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--highlight-color", default="#39ff14")
     parser.add_argument("--margin", type=int, default=160)
     parser.add_argument("--line-spacing", type=int, default=30)
+    parser.add_argument(
+        "--rtl",
+        action="store_true",
+        help="Enable right-to-left shaping/alignment (use for Arabic/Hebrew text).",
+    )
     return parser.parse_args()
 
 
@@ -136,8 +142,23 @@ def load_font(font_path: Optional[Path], font_size: int) -> ImageFont.FreeTypeFo
     raise RuntimeError("No TrueType font found. Supply --font /path/to/font.ttf")
 
 
+def shape_text(text: str, rtl: bool) -> str:
+    if not rtl:
+        return text
+    stripped = text.strip()
+    if not stripped:
+        return text
+    return arabic_reshaper.reshape(text)
+
+
 def compute_positions(
-    words: List[Dict], font: ImageFont.FreeTypeFont, frame_w: int, frame_h: int, margin: int, line_spacing: int
+    words: List[Dict],
+    font: ImageFont.FreeTypeFont,
+    frame_w: int,
+    frame_h: int,
+    margin: int,
+    line_spacing: int,
+    rtl: bool,
 ) -> List[Dict]:
     max_width = frame_w - margin * 2
     space_w = font.getlength(" ")
@@ -148,16 +169,17 @@ def compute_positions(
 
     for word in words:
         text = (word.get("word") or "").strip()
-        word_w = font.getlength(text) if text else 0.0
+        rendered = shape_text(text, rtl)
+        word_w = font.getlength(rendered) if rendered else 0.0
         proposed = word_w if not current_line else current_width + space_w + word_w
         if current_line and proposed > max_width:
             lines.append(current_line)
             widths.append(current_width)
-            current_line = [word]
+            current_line = [dict(word, render=rendered)]
             current_width = word_w
         else:
             current_width = word_w if not current_line else current_width + space_w + word_w
-            current_line.append(word)
+            current_line.append(dict(word, render=rendered))
     if current_line:
         lines.append(current_line)
         widths.append(current_width)
@@ -168,20 +190,39 @@ def compute_positions(
     positioned: List[Dict] = []
     y = start_y
     for line, line_w in zip(lines, widths):
-        x = (frame_w - line_w) / 2
-        for word in line:
-            text = (word.get("word") or "").strip()
-            word_w = font.getlength(text) if text else 0.0
-            positioned.append(
-                {
-                    "word": text,
-                    "start": float(word.get("start") or 0.0),
-                    "end": float(word.get("end") or 0.0),
-                    "x": x,
-                    "y": y,
-                }
-            )
-            x += word_w + space_w
+        if rtl:
+            cursor = frame_w - margin
+            for word in line:
+                rendered = word.get("render") or shape_text(word.get("word") or "", rtl)
+                word_w = font.getlength(rendered) if rendered else 0.0
+                cursor -= word_w
+                positioned.append(
+                    {
+                        "word": word.get("word") or "",
+                        "render": rendered,
+                        "start": float(word.get("start") or 0.0),
+                        "end": float(word.get("end") or 0.0),
+                        "x": cursor,
+                        "y": y,
+                    }
+                )
+                cursor -= space_w
+        else:
+            x = (frame_w - line_w) / 2
+            for word in line:
+                rendered = word.get("render") or shape_text(word.get("word") or "", rtl)
+                word_w = font.getlength(rendered) if rendered else 0.0
+                positioned.append(
+                    {
+                        "word": word.get("word") or "",
+                        "render": rendered,
+                        "start": float(word.get("start") or 0.0),
+                        "end": float(word.get("end") or 0.0),
+                        "x": x,
+                        "y": y,
+                    }
+                )
+                x += word_w + space_w
         y += font.size + line_spacing
     return positioned
 
@@ -198,14 +239,14 @@ def render_frame_factory(
     base_img = Image.new("RGB", (frame_w, frame_h), bg_color)
     base_draw = ImageDraw.Draw(base_img)
     for word in positioned_words:
-        base_draw.text((word["x"], word["y"]), word["word"], font=font, fill=base_color)
+        base_draw.text((word["x"], word["y"]), word.get("render") or word["word"], font=font, fill=base_color)
 
     def make_frame(t: float):
         img = base_img.copy()
         draw = ImageDraw.Draw(img)
         for word in positioned_words:
             if word["start"] <= t <= word["end"]:
-                draw.text((word["x"], word["y"]), word["word"], font=font, fill=highlight_color)
+                draw.text((word["x"], word["y"]), word.get("render") or word["word"], font=font, fill=highlight_color)
         return np.array(img)
 
     return make_frame
@@ -224,7 +265,13 @@ def main():
 
     font = load_font(args.font, args.font_size)
     positioned_words = compute_positions(
-        data["words"], font, frame_w=args.width, frame_h=args.height, margin=args.margin, line_spacing=args.line_spacing
+        data["words"],
+        font,
+        frame_w=args.width,
+        frame_h=args.height,
+        margin=args.margin,
+        line_spacing=args.line_spacing,
+        rtl=args.rtl,
     )
 
     frame_fn = render_frame_factory(
