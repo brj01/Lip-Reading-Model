@@ -3,9 +3,9 @@ import json
 from jiwer import wer, cer
 
 # === CONFIG ===
-TRUTH_FILE = r"mainn.json"
-PREDICTIONS_FOLDER = r"."
-OUTPUT_FILE = r"WER_Results.json"
+TRUTH_FILE = r"Normalized\mainn.json"
+PREDICTIONS_FOLDER = r"Normalized\normalizedwhisper"
+OUTPUT_FILE = r"WER_Results1.json"
 
 
 # === Load Ground Truth ===
@@ -39,7 +39,7 @@ def evaluate_folder(pred_folder, truth_map):
         file_wers, file_cers = [], []
         for entry in preds:
             title = entry.get("title", "").strip()
-            pred_text = entry.get("transcribed_ar", "").strip()
+            pred_text = entry.get("transcript_ar", "").strip()
             truth_text = truth_map.get(title, "")
 
             if not truth_text or not pred_text:

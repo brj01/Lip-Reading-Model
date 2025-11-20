@@ -5,8 +5,8 @@ import time
 from num2words import num2words
 
 # === CONFIG ===
-INPUT_FILE = r"TESTING LLMS\GPT4o\test_gpt4o.json"
-OUTPUT_FILE = r"Normalized\GPT.json"
+INPUT_FILE = r"SCRAPE\ALIGN\all_episodes_whisper1.json"
+OUTPUT_FILE = r"Normalized\Whisper1.json"
 
 # === REGEX + DIGIT NORMALIZATION ===
 def normalize_arabic_regex(text: str) -> str:

@@ -37,7 +37,7 @@ except Exception:
 # When placed in Normalized/, run from that folder. Root is script directory.
 ROOT = os.path.abspath(os.path.dirname(__file__))
 GROUND_TRUTH = os.path.join(ROOT, "mainn.json")
-OUTPUT_FILE = os.path.join(ROOT, "semantic_resultsGPT4o.json")
+OUTPUT_FILE = os.path.join(ROOT, "semantic_whisper.json")
 
 
 def load_json(path: str):
@@ -46,14 +46,15 @@ def load_json(path: str):
 
 
 def find_json_files(root: str) -> List[str]:
-    # Only include the hypothesis files we care about (case-sensitive): GPT4.json and Whisper.json
-    candidates = [ os.path.join(root, "GPT4.json")]
-    existing = [os.path.abspath(p) for p in candidates if os.path.exists(p)]
-    return existing
+    """Return the hypothesis JSON files to evaluate."""
+    candidates = [
+        os.path.join(root, "normalizedwhisper", "Whisper1.json"),
+    ]
+    return [os.path.abspath(p) for p in candidates if os.path.exists(p)]
 
 
 def guess_transcript_key(item: dict) -> Optional[str]:
-    for k in ( "transcribed_ar", "transcript", "text", "transcription"):
+    for k in ( "transcript_ar", "transcript", "text", "transcription"):
         if k in item:
             return k
     for k, v in item.items():
