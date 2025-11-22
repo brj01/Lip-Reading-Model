@@ -5,8 +5,8 @@ import time
 from num2words import num2words
 
 # === CONFIG ===
-INPUT_FILE = r"SCRAPE\ALIGN\all_episodes_whisper1.json"
-OUTPUT_FILE = r"Normalized\Whisper1.json"
+INPUT_FILE = r"ALIGNMENT\cleaned_no_edits.json"
+OUTPUT_FILE = r"ALIGNMENT\cleanednormalized.json"
 
 # === REGEX + DIGIT NORMALIZATION ===
 def normalize_arabic_regex(text: str) -> str:
@@ -73,7 +73,7 @@ def normalize_json(data, parent_key=None):
         normalized = {}
         for k, v in data.items():
             # Skip normalization for title or audio keys
-            if k.lower() in ["title", "audio", "audio_link"] or "audio" in k.lower():
+            if k.lower() in ["title", "audio", "audio_link","audio_url"] or "audio" in k.lower():
                 normalized[k] = v
             else:
                 normalized[k] = normalize_json(v, parent_key=k)
@@ -101,12 +101,34 @@ def process_file(input_path: str, output_path: str):
     with open(input_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
+    # If file has a top-level wrapper like { "results": [...] }, unwrap it.
+    if isinstance(data, dict) and "results" in data:
+        data = data["results"]
+
+    # Ensure we have a list to iterate
+    if not isinstance(data, list):
+        data = [data]
+
     total = len(data)
     print(f"📖 Loaded {total} items from {input_path}")
 
     normalized_entries = []
-    for i, entry in enumerate(data, start=1):
-        title = entry.get("title", "")
+    for i, raw_entry in enumerate(data, start=1):
+        entry = raw_entry
+        # If the item is a JSON string, try to parse it into an object.
+        if isinstance(entry, str):
+            try:
+                entry = json.loads(entry)
+            except Exception:
+                # Not a JSON object — treat as plain text under key 'text'
+                entry = {"text": raw_entry}
+
+        # Safely get a title for logging if the entry is a dict
+        if isinstance(entry, dict):
+            title = entry.get("title", entry.get("text", ""))
+        else:
+            title = ""
+
         print(f"[{i}/{total}] Normalizing '{title}'...")
         normalized_entry = normalize_json(entry)
         normalized_entries.append(normalized_entry)
