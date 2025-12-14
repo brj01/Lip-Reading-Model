@@ -6,3 +6,11 @@
 /Normalized/__pycache__
 .venv
 .pyenv
+/finetunewhisper/features
+/finetunewhisper/whisper-large-v3-lebanese
+
+finetunewhisper/droppped_train.txt
+finetunewhisper/droppped_val.txt
+finetunewhisper/droppped_test.txt
+finetunewhisper/.ipynb_checkpoints/mostrecent i give up-checkpoint.ipynb
+finetunewhisper/.ipynb_checkpoints/WHISPERFINETUNE-checkpoint.ipynb
